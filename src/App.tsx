@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import Left from './components/Left/Left';
-import Right from './components/Right/Right';
+import Menu from './components/Menu/Menu';
+import Resume from './pages/Resume';
 
 function App() {
   return (
     <div className="App">
-      <Left />
-      <Right />
+       <Menu />
+       {/* <Resume /> */}
     </div>
   );
 }

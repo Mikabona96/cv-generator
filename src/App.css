@@ -9,4 +9,29 @@
 .App {
   display: flex;
   justify-content: center;
+  height: 100%;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background: rgba(155, 155, 155, 0.5) transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(155, 155, 155, 0.4) ;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+  background: transparent;
+}
+::-webkit-scrollbar:horizontal {
+display: none;
 }
