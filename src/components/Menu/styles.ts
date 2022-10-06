@@ -2,9 +2,11 @@ import styled from 'styled-components';
 // ========= Menu Section =====================
 export const MenuSection = styled.div`
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 160px;
 `
 // ============= Image Block ==================
 export const ImageBlock = styled.div`
@@ -75,6 +77,41 @@ export const AboutYourselfTextArea = styled.textarea`
     box-sizing: border-box;
     &:focus {
         border: 2px solid #1976D2;
+    }
+`
+
+// =========== Education =====================
+export const EducationTitle = styled(InformationTitle)``
+
+export const EducationBlockWrapper = styled(InformationBlock)`
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+`
+
+export const EducationBlock = styled(InformationBlock)`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0;
+`
+
+export const AddEduBtn = styled.button`
+    width: 160px;
+    height: 40px;
+    padding: 10px 20px;
+    background: #348de7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s ease;
+    cursor: pointer;
+    margin-top: 2rem;
+    &:hover {
+        background: #4597e9;
+    }
+    &:active {
+        background: #5ea5ec;
     }
 `
 
