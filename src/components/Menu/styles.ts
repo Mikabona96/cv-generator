@@ -94,6 +94,7 @@ export const EducationBlock = styled(InformationBlock)`
     justify-content: space-between;
     width: 100%;
     margin-top: 0;
+    margin-bottom: 1rem;
 `
 
 export const AddEduBtn = styled.button`
@@ -115,8 +116,34 @@ export const AddEduBtn = styled.button`
     }
 `
 
+// =========== Skills =====================
+export const SkillsTitle = styled(InformationTitle)``
 
+export const SkillsBlockWrapper = styled.div`
+    margin-top: 2rem;
+    width: 55%;
+`
 
+export const SkillsBlock = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem 5.2rem;
+`
+
+export const AddSkillsBtn = styled(AddEduBtn)``
+
+// =========== Languages =====================
+export const LanguagesTitle = styled(InformationTitle)``
+
+export const LanguagesBlockWrapper = styled(SkillsBlockWrapper)`
+    
+`
+
+export const LanguagesBlock = styled(SkillsBlock)`
+    
+`
+
+export const AddLanguagesBtn = styled(AddEduBtn)``
 
 
 
