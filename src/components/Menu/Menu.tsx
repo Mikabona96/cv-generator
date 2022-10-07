@@ -13,6 +13,7 @@ import { RootState } from '../../redux/store';
 import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
+import { removeEducationContent, setEducationContent } from '../../redux/EducationContentSlice/educationContentSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -22,6 +23,7 @@ const Menu = () => {
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
+    const educationContent = useSelector((state: RootState) => state.educationContentSlice.educationContent)
     const dispatch = useDispatch<any>()
     useEffect(() => {
         console.log('image render');
@@ -108,25 +110,44 @@ const Menu = () => {
             <EducationTitle>EDUCATION</EducationTitle>
             <EducationBlockWrapper>
                 {
-                    educationBlock && educationBlock.map((object, idx) => {
+                    educationBlock && educationBlock.map((object: string, idx) => {
+                        const info = educationContent[object]
                         return (
                             <EducationBlock key={idx}>
-                                <TextField id="outlined-basic" label={object.specialization} variant="outlined" />
-                                <TextField id="outlined-basic" label={object.institution} variant="outlined" />
-                                <TextField id="outlined-basic" label={object.years} variant="outlined" />
+                                <TextField id="outlined-basic" value={info && info.Specialization ? info.Specialization : ''} label='Specialization' onChange={(e) => {
+                                    dispatch(setEducationContent({
+                                        name: [object],
+                                        content: {
+                                            Specialization: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={info && info.Institution ? info.Institution : ''} label='Educational Institution' onChange={(e) => {
+                                    dispatch(setEducationContent({
+                                        name: [object],
+                                        content: {
+                                            Institution: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={info && info.Years ? info.Years : ''} label='Years' onChange={(e) => {
+                                    dispatch(setEducationContent({
+                                        name: [object],
+                                        content: {
+                                            Years: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
                                 <RemoveEduBtn onClick={() => {
-                                    dispatch(removeEducation(idx))
+                                    dispatch(removeEducation(`${object}`))
+                                    dispatch(removeEducationContent(`${object}`))
                                 }}><IoMdRemoveCircle /></RemoveEduBtn>
                             </EducationBlock>
                         )
                     })
                 }
                 <AddEduBtn onClick={() => {
-                    dispatch(setEducationBlock({
-                        specialization: 'Specialization',
-                        institution: 'Educational Institution',
-                        years: 'Years'
-                      }))
+                    dispatch(setEducationBlock('educationLine'))
                 }}>Add Education</AddEduBtn>
             </EducationBlockWrapper>
             <SkillsTitle>SKILLS</SkillsTitle>

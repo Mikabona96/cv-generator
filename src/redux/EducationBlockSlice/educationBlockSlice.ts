@@ -1,17 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type EducationBlockData = {
-  specialization: 'Specialization',
-  institution: 'Educational Institution',
-  years: 'Years'
-}
-
 export interface EducationBlockState {
-  educationBlock: Array<EducationBlockData> | null
+  educationBlock: Array<string> | null,
+  educationLinesCounter: number
 }
 
 const initialState: EducationBlockState = {
   educationBlock: null,
+  educationLinesCounter: 0
 }
 
 export const educationBlockSlice = createSlice({
@@ -19,18 +15,20 @@ export const educationBlockSlice = createSlice({
   initialState,
   reducers: {
     setEducationBlock: (state, action) => {
+        const eduLine = `${action.payload}${state.educationLinesCounter}`
         if (state.educationBlock === null) {
-            state.educationBlock = [action.payload]
+            state.educationBlock = [eduLine]
         } else {
-            state.educationBlock = [...state.educationBlock, action.payload]
+            state.educationBlock = [...state.educationBlock, eduLine]
         }
+        state.educationLinesCounter++
     },
-    removeEducation: (state, action: {payload: number, type: string}) => {
+    removeEducation: (state, action: {payload: string, type: string}) => {
       if (state.educationBlock === null) {
         return;
       } else {
         state.educationBlock = state.educationBlock.filter((education, idx) => {
-          return idx !== action.payload
+          return education !== action.payload
         })
       }
   }
