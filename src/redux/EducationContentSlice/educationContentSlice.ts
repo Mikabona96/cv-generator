@@ -32,9 +32,10 @@ export const educationBlockSlice = createSlice({
             state.educationContent = {...state.educationContent, [name]: {...content}}
         }
     },
-    removeEducationContent: (state, action: {payload: string, type: string}) => {
-      
-  }
+    removeEducationContent: (state, action) => {
+        const name: string = action.payload
+        delete state.educationContent[name]
+    }
   },
 })
 
