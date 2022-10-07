@@ -1,8 +1,9 @@
 import React from 'react'
-import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, Name, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
+import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, LibrariesLi, LibrariesSection, LibrariesTitle, Name, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
 import { GoLocation } from 'react-icons/go';
-import { AiOutlineMail } from 'react-icons/ai';
-import { BsTelephone, BsLinkedin, BsGithub, BsTelegram } from 'react-icons/bs';
+import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
+import { FaFacebookSquare, FaViber } from 'react-icons/fa';
+import { BsTelephone, BsLinkedin, BsGithub, BsTelegram, BsSkype, BsWhatsapp } from 'react-icons/bs';
 import perfil from './perfil.jpg'
 
 const Left = () => {
@@ -23,6 +24,11 @@ const Left = () => {
         <IconSpan><BsGithub /><TextSpan>@smithmat</TextSpan></IconSpan>
         <IconSpan><BsLinkedin /><TextSpan>@smithmat</TextSpan></IconSpan>
         <IconSpan><BsTelegram /><TextSpan>@smithmat</TextSpan></IconSpan>
+        <IconSpan><FaFacebookSquare /><TextSpan>@smithmat</TextSpan></IconSpan>
+        <IconSpan><AiOutlineInstagram /><TextSpan>@smithmat</TextSpan></IconSpan>
+        <IconSpan><FaViber /><TextSpan>@smithmat</TextSpan></IconSpan>
+        <IconSpan><BsSkype /><TextSpan>@smithmat</TextSpan></IconSpan>
+        <IconSpan><BsWhatsapp /><TextSpan>@smithmat</TextSpan></IconSpan>
       </SocialSection>
       <ProfileTitle>PROFILE</ProfileTitle>
       <ProfileDescription>
@@ -63,6 +69,12 @@ const Left = () => {
         <SkillsLi>React</SkillsLi>
         <SkillsLi>Redux</SkillsLi>
       </SkillsSection>
+      <LibrariesTitle>LIBRARIES</LibrariesTitle>
+      <LibrariesSection>
+        <LibrariesLi>_Lodash</LibrariesLi>
+        <LibrariesLi>Material ui</LibrariesLi>
+        <LibrariesLi>Moment js</LibrariesLi>
+      </LibrariesSection>
       <LanguagesTitle>LANGUAGES</LanguagesTitle>
       <LanguageSection>
         <LanguagesLi>English</LanguagesLi>

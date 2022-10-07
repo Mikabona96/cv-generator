@@ -9,7 +9,7 @@ const initialState: ImageState = {
 }
 
 export const imageSlice = createSlice({
-  name: 'counter',
+  name: 'image',
   initialState,
   reducers: {
     setImage: (state, action) => {

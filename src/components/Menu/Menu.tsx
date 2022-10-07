@@ -1,17 +1,27 @@
-import { TextField } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
 import { setImage } from '../../redux/ImageSlice/imageSlice';
+import { setAdress, setEmail, setPhone } from '../../redux/InformationSlice/informationSlice';
+import { setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
+import { setLibrariesBlock } from '../../redux/LibrariesBlockSlice/librariesBlockSlice';
 import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlice/namePositionSlice';
+import { removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
+import { removeSocial, setSocialBlock } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialTitle } from './styles'
+import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
+import {IoMdRemoveCircle} from 'react-icons/io'
 
 const Menu = () => {
-    const [institutionsCount, setInstitutionsCount] = useState([1])
-    const [skills, setSkills] = useState([1])
-    const [languages, setLanguages] = useState([1])
+    const [socialValue, setSocialValue] = useState('Github')
     const image = useSelector((state: RootState) => state.image.image)
+    const socialBlock = useSelector((state: RootState) => state.socialBlockSlice.socialBlock)
+    const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
+    const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
+    const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
+    const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
     const dispatch = useDispatch<any>()
     useEffect(() => {
         console.log('image render');
@@ -41,15 +51,55 @@ const Menu = () => {
             </NameAndPositionBlock>
             <InformationTitle>INFORMATION</InformationTitle>
             <InformationBlock>
-                <TextField id="outlined-basic" label="Your Adress: str. № 123. city, country" variant="outlined" />
-                <TextField id="outlined-basic" label="Your E-mail" variant="outlined" />
-                <TextField id="outlined-basic" label="Your phone number" variant="outlined" />
+                <TextField id="outlined-basic" label="Your Adress: str. № 123. city, country" onChange={(e) => {
+                    dispatch(setAdress(e.target.value))
+                }} variant="outlined" />
+                <TextField id="outlined-basic" label="Your E-mail" onChange={(e) => {
+                    dispatch(setEmail(e.target.value))
+                }} variant="outlined" />
+                <TextField id="outlined-basic" label="Your phone number" onChange={(e) => {
+                    dispatch(setPhone(e.target.value))
+                }} variant="outlined" />
             </InformationBlock>
             <SocialTitle>SOCIAL</SocialTitle>
+            <SocialFormWrapper>
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Social</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={socialValue}
+                        label="Social"
+                        onChange={(e) => {
+                            setSocialValue(e.target.value)
+                        }}
+                    >
+                        <MenuItem value={'Github'}>Github</MenuItem>
+                        <MenuItem value={'LinkedIn'}>LinkedIn</MenuItem>
+                        <MenuItem value={'Telegram'}>Telegram</MenuItem>
+                        <MenuItem value={'Instagram'}>Instagram</MenuItem>
+                        <MenuItem value={'WhatsApp'}>WhatsApp</MenuItem>
+                        <MenuItem value={'Viber'}>Viber</MenuItem>
+                        <MenuItem value={'Facebook'}>Facebook</MenuItem>
+                        <MenuItem value={'Skype'}>Skype</MenuItem>
+                    </Select>
+                </FormControl>
+                <AddSocialBtn onClick={() => {
+                    dispatch(setSocialBlock(socialValue))
+                }}>Add Social</AddSocialBtn>
+            </SocialFormWrapper>
             <SocialBlock>
-                <TextField id="outlined-basic" label="Github" variant="outlined" />
-                <TextField id="outlined-basic" label="LinkedIn" variant="outlined" />
-                <TextField id="outlined-basic" label="Telegram" variant="outlined" />
+                {
+                    socialBlock && socialBlock.map((social, idx) => {
+                        return (
+                            <TextFieldSocialContainer key={idx}>
+                                <TextField id="outlined-basic" label={social} variant="outlined" /><RemoveSocialBtn onClick={() => {
+                                    dispatch(removeSocial(idx))
+                                }}><IoMdRemoveCircle /></RemoveSocialBtn>
+                            </TextFieldSocialContainer>
+                        )
+                    })
+                }
             </SocialBlock>
             <AboutYourselfTitle>ABOUT YOURSELF</AboutYourselfTitle>
             <AboutYourselfBlock>
@@ -58,48 +108,75 @@ const Menu = () => {
             <EducationTitle>EDUCATION</EducationTitle>
             <EducationBlockWrapper>
                 {
-                    institutionsCount.map((institute: number, idx:number) => {
+                    educationBlock && educationBlock.map((object, idx) => {
                         return (
                             <EducationBlock key={idx}>
-                                <TextField id="outlined-basic" label="Specialization" variant="outlined" />
-                                <TextField id="outlined-basic" label="Educational Institution" variant="outlined" />
-                                <TextField id="outlined-basic" label="Years" variant="outlined" />
+                                <TextField id="outlined-basic" label={object.specialization} variant="outlined" />
+                                <TextField id="outlined-basic" label={object.institution} variant="outlined" />
+                                <TextField id="outlined-basic" label={object.years} variant="outlined" />
+                                <RemoveEduBtn onClick={() => {
+                                    dispatch(removeEducation(idx))
+                                }}><IoMdRemoveCircle /></RemoveEduBtn>
                             </EducationBlock>
                         )
                     })
                 }
                 <AddEduBtn onClick={() => {
-                    setInstitutionsCount([...institutionsCount, 1])
+                    dispatch(setEducationBlock({
+                        specialization: 'Specialization',
+                        institution: 'Educational Institution',
+                        years: 'Years'
+                      }))
                 }}>Add Education</AddEduBtn>
             </EducationBlockWrapper>
             <SkillsTitle>SKILLS</SkillsTitle>
             <SkillsBlockWrapper>
                 <SkillsBlock>
                     {
-                        skills.map((skill: number, idx: number) => {
+                       skillsBlock && skillsBlock.map((skill, idx: number) => {
                             return (
-                                <TextField key={idx} id="outlined-basic" label={`Your skill № ${idx + 1}`} variant="outlined" />
+                                <TextFieldSkillsContainer key={idx}>
+                                    <TextField id="outlined-basic" label={`${skill} ${idx + 1}`} variant="outlined" /><RemoveSkillsBtn onClick={() => {
+                                        dispatch(removeSkil(idx))
+                                        console.log(idx)
+                                    }}><IoMdRemoveCircle /></RemoveSkillsBtn>
+                                </TextFieldSkillsContainer>
                             )
                         })
                     }
                 </SkillsBlock>
                 <AddSkillsBtn onClick={() => {
-                        setSkills([...skills, 1])
+                        dispatch(setSkillsBlock('Your skill №'))
                     }}>Add Skills</AddSkillsBtn>
             </SkillsBlockWrapper>
+            <LibrariesTitle>LIBRARIES</LibrariesTitle>
+            <LibrariesBlockWrapper>
+                <LibrariesBlock>
+                    {
+                       librariesBlock && librariesBlock.map((library, idx: number) => {
+                            return (
+                                <TextField key={idx} id="outlined-basic" label={`${library} ${idx + 1}`} variant="outlined" />
+                            )
+                        })
+                    }
+                </LibrariesBlock>
+                <AddSkillsBtn onClick={() => {
+                        dispatch(setLibrariesBlock('Your library №'))
+                    }}>Add Library</AddSkillsBtn>
+            </LibrariesBlockWrapper>
             <LanguagesTitle>LANGUAGES</LanguagesTitle>
             <LanguagesBlockWrapper>
                 <LanguagesBlock>
                     {
-                        languages.map((language: number, idx: number) => {
+                        languagesBlock && languagesBlock.map((language, idx: number) => {
                             return (
-                                <TextField key={idx} id="outlined-basic" label={`Your Language № ${idx + 1}`} variant="outlined" />
+                                <TextField key={idx} id="outlined-basic" label={`${language} ${idx + 1}`} variant="outlined" />
                             )
                         })
                     }
                 </LanguagesBlock>
                 <AddLanguagesBtn onClick={() => {
-                    setLanguages([...languages, 1])
+                    dispatch(setLanguagesBlock('Your Language №'))
                 }}>Add Languages</AddLanguagesBtn>
             </LanguagesBlockWrapper>
         </MenuSection>

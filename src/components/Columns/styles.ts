@@ -142,6 +142,12 @@ export const SkillsSection = styled.ul`
 `
 export const SkillsLi = styled.li``
 
+// =========== Libraries Section ================
+export const LibrariesTitle = styled(SocialTitle)``
+
+export const LibrariesSection = styled(SkillsSection)``
+export const LibrariesLi = styled.li``
+
 // =========== Languages Section ================
 export const LanguagesTitle = styled(SocialTitle)``
 export const LanguageSection = styled(SkillsSection)`

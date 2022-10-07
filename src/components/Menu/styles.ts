@@ -59,7 +59,57 @@ export const InformationBlock = styled(NameAndPositionBlock)`
 // =========== Social =====================
 export const SocialTitle = styled(InformationTitle)``
 
-export const SocialBlock = styled(InformationBlock)``
+export const SocialBlock = styled.div`
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+`
+
+export const SocialFormWrapper = styled.div`
+    width: 50%;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    & div {
+        width: 90%;
+    }
+`
+export const AddSocialBtn = styled.button`
+    width: 160px;
+    height: 40px;
+    padding: 10px 20px;
+    background: #348de7;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        background: #4597e9;
+    }
+    &:active {
+        background: #5ea5ec;
+    }
+`
+export const TextFieldSocialContainer = styled.div`
+    display: flex;
+    align-items: center;
+    align-content: center;
+`
+
+export const RemoveSocialBtn = styled.button`
+    margin-left: 0.5rem;
+    color: red;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+`
+
 
 // =========== AboutYourself =====================
 export const AboutYourselfTitle = styled(InformationTitle)``
@@ -92,29 +142,18 @@ export const EducationBlockWrapper = styled(InformationBlock)`
 export const EducationBlock = styled(InformationBlock)`
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
     width: 100%;
     margin-top: 0;
     margin-bottom: 1rem;
 `
 
-export const AddEduBtn = styled.button`
-    width: 160px;
-    height: 40px;
-    padding: 10px 20px;
-    background: #348de7;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    transition: 0.3s ease;
-    cursor: pointer;
+export const AddEduBtn = styled(AddSocialBtn)`
     margin-top: 2rem;
-    &:hover {
-        background: #4597e9;
-    }
-    &:active {
-        background: #5ea5ec;
-    }
 `
+
+export const RemoveEduBtn = styled(RemoveSocialBtn)``
 
 // =========== Skills =====================
 export const SkillsTitle = styled(InformationTitle)``
@@ -130,7 +169,21 @@ export const SkillsBlock = styled.div`
     gap: 1rem 5.2rem;
 `
 
+export const TextFieldSkillsContainer = styled(TextFieldSocialContainer)``
+
 export const AddSkillsBtn = styled(AddEduBtn)``
+
+export const RemoveSkillsBtn = styled(RemoveSocialBtn)``
+
+
+// =========== Libraries =====================
+export const LibrariesTitle = styled(InformationTitle)``
+
+export const LibrariesBlockWrapper = styled(SkillsBlockWrapper)``
+
+export const LibrariesBlock = styled(SkillsBlock)``
+
+export const AddLibrariesBtn = styled(AddEduBtn)``
 
 // =========== Languages =====================
 export const LanguagesTitle = styled(InformationTitle)``

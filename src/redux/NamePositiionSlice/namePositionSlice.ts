@@ -13,7 +13,7 @@ const initialState: NamePositionState = {
 }
 
 export const namePositionSlice = createSlice({
-  name: 'counter',
+  name: 'name',
   initialState,
   reducers: {
     setName: (state, action) => {
