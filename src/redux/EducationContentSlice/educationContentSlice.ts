@@ -7,17 +7,11 @@ export type EducationContentState = {
             Institution?: string,
             Years?: string
         },
-    }
+    } | null
 } 
 
 const initialState: EducationContentState = {
-    educationContent: {
-        'filler': {
-            Specialization: 'string',
-            Institution: 'string',
-            Years: 'string'
-        },
-    }
+    educationContent: null
 }
 
 export const educationBlockSlice = createSlice({
@@ -26,7 +20,9 @@ export const educationBlockSlice = createSlice({
   reducers: {
     setEducationContent: (state, action) => {
         const {name, content} = action.payload
-        if (state.educationContent[name]) {
+        if (state.educationContent === null) {
+            state.educationContent = {[name]: {...content}}
+        } else if (state.educationContent[name]) {
             state.educationContent[name] = {...state.educationContent[name], ...content}
         } else {
             state.educationContent = {...state.educationContent, [name]: {...content}}
@@ -34,7 +30,7 @@ export const educationBlockSlice = createSlice({
     },
     removeEducationContent: (state, action) => {
         const name: string = action.payload
-        delete state.educationContent[name]
+        if (state.educationContent) delete state.educationContent[name]
     }
   },
 })

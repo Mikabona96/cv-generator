@@ -26,7 +26,6 @@ const Menu = () => {
     const educationContent = useSelector((state: RootState) => state.educationContentSlice.educationContent)
     const dispatch = useDispatch<any>()
     useEffect(() => {
-        console.log('image render');
     }, [image])
 
     return (
@@ -111,7 +110,10 @@ const Menu = () => {
             <EducationBlockWrapper>
                 {
                     educationBlock && educationBlock.map((object: string, idx) => {
-                        const info = educationContent[object]
+                        let info;
+                        if (educationContent !== null && object in educationContent) {
+                            info = educationContent[object]
+                        }
                         return (
                             <EducationBlock key={idx}>
                                 <TextField id="outlined-basic" value={info && info.Specialization ? info.Specialization : ''} label='Specialization' onChange={(e) => {
