@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+type EducationContent = {
+  name: string
+  content: {
+      Specialization?: string,
+      Institution?: string,
+      Years?: string
+  },
+}
 export interface EducationBlockState {
-  educationBlock: Array<string> | null,
+  educationBlock: Array<EducationContent> | null,
   educationLinesCounter: number
 }
 
@@ -15,27 +22,39 @@ export const educationBlockSlice = createSlice({
   initialState,
   reducers: {
     setEducationBlock: (state, action) => {
-        const eduLine = `${action.payload}${state.educationLinesCounter}`
+        const payload = {...action.payload, name: `${action.payload.name}${state.educationLinesCounter}`}
         if (state.educationBlock === null) {
-            state.educationBlock = [eduLine]
+            state.educationBlock = [payload]
         } else {
-            state.educationBlock = [...state.educationBlock, eduLine]
+            state.educationBlock = [...state.educationBlock, payload]
         }
         state.educationLinesCounter++
     },
-    removeEducation: (state, action: {payload: string, type: string}) => {
+    editEducationBlock: (state, action) => {
+      const idx = action.payload.idx
+      const value = action.payload.content
+      if (state.educationBlock) {
+        state.educationBlock = state.educationBlock?.map((education, index) => {
+          if (idx === index) {
+            education.content = {...education.content, ...value}
+          }
+          return education
+        })
+      }
+    },
+    removeEducation: (state, action) => {
       if (state.educationBlock === null) {
         return;
       } else {
         state.educationBlock = state.educationBlock.filter((education, idx) => {
-          return education !== action.payload
+          return idx !== action.payload
         })
       }
-  }
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setEducationBlock, removeEducation } = educationBlockSlice.actions
+export const { setEducationBlock, removeEducation, editEducationBlock } = educationBlockSlice.actions
 
 export default educationBlockSlice.reducer

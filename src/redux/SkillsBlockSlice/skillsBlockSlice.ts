@@ -40,7 +40,6 @@ export const skillsBlockSlice = createSlice({
         state.skillsBlock = state.skillsBlock?.map((skill, index) => {
           if (idx === index) {
             skill.value = value
-            console.log('matchges')
           }
           return skill
         })

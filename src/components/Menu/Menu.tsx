@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
+import { editEducationBlock, removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
 import { setImage } from '../../redux/ImageSlice/imageSlice';
 import { setAdress, setEmail, setPhone } from '../../redux/InformationSlice/informationSlice';
 import { removeLanguage, setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
@@ -13,7 +13,6 @@ import { RootState } from '../../redux/store';
 import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
-import { removeEducationContent, setEducationContent } from '../../redux/EducationContentSlice/educationContentSlice';
 import { removeLibrariesContent, setLibrariesContent } from '../../redux/LibrariesContentSlice/librariesContentSlice';
 import { removeLanguagesContent, setLanguagesContent } from '../../redux/LanguageContentSlice/languageContentSlice';
 
@@ -25,7 +24,6 @@ const Menu = () => {
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
-    const educationContent = useSelector((state: RootState) => state.educationContentSlice.educationContent)
     const librariesContent = useSelector((state: RootState) => state.librariesContentSlice.librariesContent)
     const languagesContent = useSelector((state: RootState) => state.languageContentSlice.languagesContent)
     const dispatch = useDispatch<any>()
@@ -113,47 +111,42 @@ const Menu = () => {
             <EducationTitle>EDUCATION</EducationTitle>
             <EducationBlockWrapper>
                 {
-                    educationBlock && educationBlock.map((object: string, idx) => {
-                        let info;
-                        if (educationContent !== null && object in educationContent) {
-                            info = educationContent[object]
-                        }
+                    educationBlock && educationBlock.map((object, idx) => {
                         return (
                             <EducationBlock key={idx}>
-                                <TextField id="outlined-basic" value={info && info.Specialization ? info.Specialization : ''} label='Specialization' onChange={(e) => {
-                                    dispatch(setEducationContent({
-                                        name: [object],
+                                <TextField id="outlined-basic" value={object.content.Specialization} label='Specialization' onChange={(e) => {
+                                    dispatch(editEducationBlock({
+                                        idx: idx,
                                         content: {
                                             Specialization: e.target.value
                                         }
                                     }))
                                 }} variant="outlined" />
-                                <TextField id="outlined-basic" value={info && info.Institution ? info.Institution : ''} label='Educational Institution' onChange={(e) => {
-                                    dispatch(setEducationContent({
-                                        name: [object],
+                                <TextField id="outlined-basic" value={object.content.Institution} label='Educational Institution' onChange={(e) => {
+                                    dispatch(editEducationBlock({
+                                        idx: idx,
                                         content: {
                                             Institution: e.target.value
                                         }
                                     }))
                                 }} variant="outlined" />
-                                <TextField id="outlined-basic" value={info && info.Years ? info.Years : ''} label='Years' onChange={(e) => {
-                                    dispatch(setEducationContent({
-                                        name: [object],
+                                <TextField id="outlined-basic" value={object.content.Years} label='Years' onChange={(e) => {
+                                    dispatch(editEducationBlock({
+                                        idx: idx,
                                         content: {
                                             Years: e.target.value
                                         }
                                     }))
                                 }} variant="outlined" />
                                 <RemoveEduBtn onClick={() => {
-                                    dispatch(removeEducation(`${object}`))
-                                    dispatch(removeEducationContent(`${object}`))
+                                    dispatch(removeEducation(idx))
                                 }}><IoMdRemoveCircle /></RemoveEduBtn>
                             </EducationBlock>
                         )
                     })
                 }
                 <AddEduBtn onClick={() => {
-                    dispatch(setEducationBlock('educationLine'))
+                    dispatch(setEducationBlock({name: 'educationLine', content: {Specialization: '', Institution: '', Years: ''}}))
                 }}>Add Education</AddEduBtn>
             </EducationBlockWrapper>
             <SkillsTitle>SKILLS</SkillsTitle>
@@ -163,7 +156,7 @@ const Menu = () => {
                        skillsBlock && skillsBlock.map((skill, idx: number) => {
                             return (
                                 <TextFieldSkillsContainer key={idx}>
-                                    <TextField id="outlined-basic" value={skill.value ? skill.value : ''} label={`Your skill`} variant="outlined"  onChange={(e) => {
+                                    <TextField id="outlined-basic" value={skill.value ? skill.value : ''} label={`Your skill №${idx + 1}`} variant="outlined"  onChange={(e) => {
                                         dispatch(editSkillBlock({value: e.target.value, idx: idx}))
                                     }}/><RemoveSkillsBtn onClick={() => {
                                         dispatch(removeSkil(idx))
