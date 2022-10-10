@@ -7,7 +7,6 @@ import educationBlockSlice from './EducationBlockSlice/educationBlockSlice'
 import skillsBlock from './SkillsBlockSlice/skillsBlockSlice'
 import librariesBlock from './LibrariesBlockSlice/librariesBlockSlice'
 import languagesBlock from './LanguagesBlockSlice/languagesBlockSlice'
-import librariesContentSlice from './LibrariesContentSlice/librariesContentSlice'
 import languageContentSlice from './LanguageContentSlice/languageContentSlice'
 
 export const store = configureStore({
@@ -20,7 +19,6 @@ export const store = configureStore({
     skillsBlock,
     librariesBlock,
     languagesBlock,
-    librariesContentSlice,
     languageContentSlice
   },
 })
