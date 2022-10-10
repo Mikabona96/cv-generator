@@ -185,6 +185,10 @@ export const LibrariesBlock = styled(SkillsBlock)``
 
 export const AddLibrariesBtn = styled(AddEduBtn)``
 
+export const TextFieldLibrariesContainer = styled(TextFieldSocialContainer)``
+
+export const RemoveLibrariesBtn = styled(RemoveSocialBtn)``
+
 // =========== Languages =====================
 export const LanguagesTitle = styled(InformationTitle)``
 
@@ -197,6 +201,10 @@ export const LanguagesBlock = styled(SkillsBlock)`
 `
 
 export const AddLanguagesBtn = styled(AddEduBtn)``
+
+export const TextFieldLanguageContainer = styled(TextFieldSocialContainer)``
+
+export const RemoveLanguagesBtn = styled(RemoveSocialBtn)``
 
 
 

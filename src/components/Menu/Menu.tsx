@@ -4,16 +4,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
 import { setImage } from '../../redux/ImageSlice/imageSlice';
 import { setAdress, setEmail, setPhone } from '../../redux/InformationSlice/informationSlice';
-import { setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
-import { setLibrariesBlock } from '../../redux/LibrariesBlockSlice/librariesBlockSlice';
+import { removeLanguage, setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
+import { removeLibrary, setLibrariesBlock } from '../../redux/LibrariesBlockSlice/librariesBlockSlice';
 import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlice/namePositionSlice';
 import { removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
 import { removeSocial, setSocialBlock } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
+import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { removeEducationContent, setEducationContent } from '../../redux/EducationContentSlice/educationContentSlice';
+import { removeSkillsContent, setSkillsContent } from '../../redux/SkillsContentSlice/skillsContentSlice';
+import { removeLibrariesContent, setLibrariesContent } from '../../redux/LibrariesContentSlice/librariesContentSlice';
+import { removeLanguagesContent, setLanguagesContent } from '../../redux/LanguageContentSlice/languageContentSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -24,6 +27,9 @@ const Menu = () => {
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
     const educationContent = useSelector((state: RootState) => state.educationContentSlice.educationContent)
+    const skillsContent = useSelector((state: RootState) => state.skillsContentSlice.skillsContent)
+    const librariesContent = useSelector((state: RootState) => state.librariesContentSlice.librariesContent)
+    const languagesContent = useSelector((state: RootState) => state.languageContentSlice.languagesContent)
     const dispatch = useDispatch<any>()
     useEffect(() => {
     }, [image])
@@ -157,10 +163,17 @@ const Menu = () => {
                 <SkillsBlock>
                     {
                        skillsBlock && skillsBlock.map((skill, idx: number) => {
+                        let info;
+                        if (skillsContent !== null && skill in skillsContent) {
+                            info = skillsContent[skill]
+                        }
                             return (
                                 <TextFieldSkillsContainer key={idx}>
-                                    <TextField id="outlined-basic" label={`${skill} ${idx + 1}`} variant="outlined" /><RemoveSkillsBtn onClick={() => {
-                                        dispatch(removeSkil(idx))
+                                    <TextField id="outlined-basic" value={info && info.value ? info.value : ''} label={`Your skill`} variant="outlined"  onChange={(e) => {
+                                        dispatch(setSkillsContent({name: skill, content: {value: e.target.value}}))
+                                    }}/><RemoveSkillsBtn onClick={() => {
+                                        dispatch(removeSkil(skill))
+                                        dispatch(removeSkillsContent(`${skill}`))
                                         console.log(idx)
                                     }}><IoMdRemoveCircle /></RemoveSkillsBtn>
                                 </TextFieldSkillsContainer>
@@ -169,22 +182,34 @@ const Menu = () => {
                     }
                 </SkillsBlock>
                 <AddSkillsBtn onClick={() => {
-                        dispatch(setSkillsBlock('Your skill №'))
+                        dispatch(setSkillsBlock('skill'))
                     }}>Add Skills</AddSkillsBtn>
             </SkillsBlockWrapper>
             <LibrariesTitle>LIBRARIES</LibrariesTitle>
             <LibrariesBlockWrapper>
                 <LibrariesBlock>
                     {
-                       librariesBlock && librariesBlock.map((library, idx: number) => {
+                        librariesBlock && librariesBlock.map((library, idx: number) => {
+                           let info;
+                           if (librariesContent !== null && library in librariesContent) {
+                               info = librariesContent[library]
+                           }
                             return (
-                                <TextField key={idx} id="outlined-basic" label={`${library} ${idx + 1}`} variant="outlined" />
+                                <TextFieldLibrariesContainer>
+                                    <TextField key={idx} id="outlined-basic" value={info && info.value ? info.value : ''} onChange={(e) => {
+                                        dispatch(setLibrariesContent({name: library, content: {value: e.target.value}}))
+                                    }}  label={`Your Library`} variant="outlined" /> <RemoveLibrariesBtn onClick={() => {
+                                        dispatch(removeLibrariesContent(library))
+                                        dispatch(removeLibrary(`${library}`))
+                                        console.log(idx)
+                                    }}><IoMdRemoveCircle /></RemoveLibrariesBtn>
+                                </TextFieldLibrariesContainer>
                             )
                         })
                     }
                 </LibrariesBlock>
                 <AddSkillsBtn onClick={() => {
-                        dispatch(setLibrariesBlock('Your library №'))
+                        dispatch(setLibrariesBlock('library'))
                     }}>Add Library</AddSkillsBtn>
             </LibrariesBlockWrapper>
             <LanguagesTitle>LANGUAGES</LanguagesTitle>
@@ -192,14 +217,31 @@ const Menu = () => {
                 <LanguagesBlock>
                     {
                         languagesBlock && languagesBlock.map((language, idx: number) => {
+                            let info;
+                            if (languagesContent !== null && language in languagesContent) {
+                                info = languagesContent[language]
+                            }
                             return (
-                                <TextField key={idx} id="outlined-basic" label={`${language} ${idx + 1}`} variant="outlined" />
+                                <TextFieldLanguageContainer>
+                                    <TextField key={idx} id="outlined-basic" value={info && info.value ? info.value : ''} onChange={(e) => {
+                                        dispatch(setLanguagesContent({
+                                            name: language,
+                                            content: {
+                                                value: e.target.value
+                                            }
+                                        }))
+                                    }} label={`Your language`} variant="outlined" />
+                                    <RemoveLibrariesBtn onClick={() => {
+                                        dispatch(removeLanguagesContent(language))
+                                        dispatch(removeLanguage(`${language}`))
+                                    }}><IoMdRemoveCircle /></RemoveLibrariesBtn>
+                                </TextFieldLanguageContainer>
                             )
                         })
                     }
                 </LanguagesBlock>
                 <AddLanguagesBtn onClick={() => {
-                    dispatch(setLanguagesBlock('Your Language №'))
+                    dispatch(setLanguagesBlock('language'))
                 }}>Add Languages</AddLanguagesBtn>
             </LanguagesBlockWrapper>
         </MenuSection>

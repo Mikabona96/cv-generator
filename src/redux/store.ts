@@ -8,6 +8,9 @@ import skillsBlock from './SkillsBlockSlice/skillsBlockSlice'
 import librariesBlock from './LibrariesBlockSlice/librariesBlockSlice'
 import languagesBlock from './LanguagesBlockSlice/languagesBlockSlice'
 import educationContentSlice from './EducationContentSlice/educationContentSlice'
+import skillsContentSlice from './SkillsContentSlice/skillsContentSlice'
+import librariesContentSlice from './LibrariesContentSlice/librariesContentSlice'
+import languageContentSlice from './LanguageContentSlice/languageContentSlice'
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +22,10 @@ export const store = configureStore({
     skillsBlock,
     librariesBlock,
     languagesBlock,
-    educationContentSlice
+    educationContentSlice,
+    skillsContentSlice,
+    librariesContentSlice,
+    languageContentSlice
   },
 })
 
