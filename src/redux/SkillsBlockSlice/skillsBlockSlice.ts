@@ -15,7 +15,7 @@ const initialState: SkillsBlockState = {
 }
 
 export const skillsBlockSlice = createSlice({
-  name: 'librariesBlock',
+  name: 'languagesBlock',
   initialState,
   reducers: {
     setSkillsBlock: (state, action) => {

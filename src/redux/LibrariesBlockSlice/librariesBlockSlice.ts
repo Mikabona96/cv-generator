@@ -15,7 +15,7 @@ const initialState: LibrariesBlockState = {
 }
 
 export const librariesBlockSlice = createSlice({
-  name: 'librariesBlock',
+  name: 'languagesBlock',
   initialState,
   reducers: {
     setLibrariesBlock: (state, action) => {

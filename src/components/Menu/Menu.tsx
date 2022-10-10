@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editEducationBlock, removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
 import { setImage } from '../../redux/ImageSlice/imageSlice';
 import { setAdress, setEmail, setPhone } from '../../redux/InformationSlice/informationSlice';
-import { removeLanguage, setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
+import { editLanguagesBlock, removeLanguage, setLanguagesBlock } from '../../redux/LanguagesBlockSlice/languagesBlockSlice';
 import { editLibrariesBlock, removeLibrary, setLibrariesBlock } from '../../redux/LibrariesBlockSlice/librariesBlockSlice';
 import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlice/namePositionSlice';
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
@@ -13,7 +13,6 @@ import { RootState } from '../../redux/store';
 import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
-import { removeLanguagesContent, setLanguagesContent } from '../../redux/LanguageContentSlice/languageContentSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -23,7 +22,6 @@ const Menu = () => {
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
-    const languagesContent = useSelector((state: RootState) => state.languageContentSlice.languagesContent)
     const dispatch = useDispatch<any>()
     useEffect(() => {
     }, [image])
@@ -194,23 +192,13 @@ const Menu = () => {
                 <LanguagesBlock>
                     {
                         languagesBlock && languagesBlock.map((language, idx: number) => {
-                            let info;
-                            if (languagesContent !== null && language in languagesContent) {
-                                info = languagesContent[language]
-                            }
                             return (
                                 <TextFieldLanguageContainer>
-                                    <TextField key={idx} id="outlined-basic" value={info && info.value ? info.value : ''} onChange={(e) => {
-                                        dispatch(setLanguagesContent({
-                                            name: language,
-                                            content: {
-                                                value: e.target.value
-                                            }
-                                        }))
-                                    }} label={`Your language`} variant="outlined" />
+                                    <TextField key={idx} id="outlined-basic" value={language.value ? language.value : ''} onChange={(e) => {
+                                        dispatch(editLanguagesBlock({value: e.target.value, idx: idx}))
+                                    }} label={`Your language №${idx + 1}`} variant="outlined" />
                                     <RemoveLibrariesBtn onClick={() => {
-                                        dispatch(removeLanguagesContent(language))
-                                        dispatch(removeLanguage(`${language}`))
+                                        dispatch(removeLanguage(idx))
                                     }}><IoMdRemoveCircle /></RemoveLibrariesBtn>
                                 </TextFieldLanguageContainer>
                             )
@@ -218,7 +206,7 @@ const Menu = () => {
                     }
                 </LanguagesBlock>
                 <AddLanguagesBtn onClick={() => {
-                    dispatch(setLanguagesBlock('language'))
+                    dispatch(setLanguagesBlock({name: 'language', value:''}))
                 }}>Add Languages</AddLanguagesBtn>
             </LanguagesBlockWrapper>
         </MenuSection>

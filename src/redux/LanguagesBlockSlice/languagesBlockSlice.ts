@@ -1,47 +1,63 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+type LanguagesContent = {
+  name: string,
+  value: string
+}
 export interface LanguagesBlockState {
-  languagesBlock: string[] | null,
-  languagesBlockCounter: number
+  languagesBlock: Array<LanguagesContent> | null,
+  stateLanguagesBlockCounter: number
 }
 
 const initialState: LanguagesBlockState = {
     languagesBlock: null,
-    languagesBlockCounter: 0
+    stateLanguagesBlockCounter: 0
 }
 
 export const languagesBlockSlice = createSlice({
   name: 'languagesBlock',
   initialState,
   reducers: {
-    setLanguagesBlock: (state, action: {payload: string, type: string}) => {
-        // if (state.languagesBlock === null) {
-        //     state.languagesBlock = [action.payload]
+    setLanguagesBlock: (state, action) => {
+        // if (state.skillsBlock === null) {
+        //     state.skillsBlock = [action.payload]
         // } else {
 
-        //     state.languagesBlock = [...state.languagesBlock, action.payload]
+        //     state.skillsBlock = [...state.skillsBlock, action.payload]
         // }
-        const LanguageBlocks = `${action.payload}${state.languagesBlockCounter}`
+        const payload = {...action.payload, name: `${action.payload.name}${state.stateLanguagesBlockCounter}`}
         if (state.languagesBlock === null) {
-            state.languagesBlock = [LanguageBlocks]
+            state.languagesBlock = [payload]
         } else {
-            state.languagesBlock = [...state.languagesBlock, LanguageBlocks]
+            state.languagesBlock = [...state.languagesBlock, payload]
         }
-        state.languagesBlockCounter++
+        state.stateLanguagesBlockCounter++
     },
-    removeLanguage: (state, action: {payload: string, type: string}) => {
+    editLanguagesBlock: (state, action) => {
+      const idx = action.payload.idx
+      const value = action.payload.value
+      if (state.languagesBlock) {
+        state.languagesBlock = state.languagesBlock?.map((library, index) => {
+          if (idx === index) {
+            library.value = value
+          }
+          return library
+        })
+      }
+    },
+    removeLanguage: (state, action) => {
       if (state.languagesBlock === null) {
         return;
       } else {
-        state.languagesBlock = state.languagesBlock.filter((language, idx) => {
-          return language !== action.payload
+        state.languagesBlock = state.languagesBlock.filter((library, idx) => {
+          return idx !== action.payload
         })
       }
-    } 
+  }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setLanguagesBlock, removeLanguage } = languagesBlockSlice.actions
+export const { setLanguagesBlock, removeLanguage, editLanguagesBlock } = languagesBlockSlice.actions
 
 export default languagesBlockSlice.reducer
