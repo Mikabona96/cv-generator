@@ -1,38 +1,60 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export interface SocialBlockState {
-  socialBlock: string[] | null
+type SocailsContent = {
+  name: string,
+  value: string
+}
+export interface SocialsBlockState {
+  socialsBlock: Array<SocailsContent> | null,
 }
 
-const initialState: SocialBlockState = {
-    socialBlock: null,
+const initialState: SocialsBlockState = {
+    socialsBlock: null,
 }
 
-export const socialBlockSlice = createSlice({
-  name: 'socialBlock',
+export const skillsBlockSlice = createSlice({
+  name: 'socialsBlock',
   initialState,
   reducers: {
-    setSocialBlock: (state, action: {payload: string, type: string}) => {
-        if (state.socialBlock === null) {
-            state.socialBlock = [action.payload]
-        } else {
+    setSocial: (state, action) => {
+        // if (state.skillsBlock === null) {
+        //     state.skillsBlock = [action.payload]
+        // } else {
 
-            state.socialBlock = [...state.socialBlock, action.payload]
+        //     state.skillsBlock = [...state.skillsBlock, action.payload]
+        // }
+        const payload = {...action.payload, name: `${action.payload.name}`}
+        if (state.socialsBlock === null) {
+            state.socialsBlock = [payload]
+        } else {
+            state.socialsBlock = [...state.socialsBlock, payload]
         }
     },
-    removeSocial: (state, action: {payload: number, type: string}) => {
-        if (state.socialBlock === null) {
-          return;
-        } else {
-          state.socialBlock = state.socialBlock.filter((social, idx) => {
-            return idx !== action.payload
-          })
-        }
-    }
+    editSocial: (state, action) => {
+      const idx = action.payload.idx
+      const value = action.payload.value
+      if (state.socialsBlock) {
+        state.socialsBlock = state.socialsBlock?.map((skill, index) => {
+          if (idx === index) {
+            skill.value = value
+          }
+          return skill
+        })
+      }
+    },
+    removeSocial: (state, action) => {
+      if (state.socialsBlock === null) {
+        return;
+      } else {
+        state.socialsBlock = state.socialsBlock.filter((skill, idx) => {
+          return idx !== action.payload
+        })
+      }
+  }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSocialBlock, removeSocial } = socialBlockSlice.actions
+export const { setSocial, removeSocial, editSocial } = skillsBlockSlice.actions
 
-export default socialBlockSlice.reducer
+export default skillsBlockSlice.reducer

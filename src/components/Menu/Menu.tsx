@@ -8,7 +8,7 @@ import { editLanguagesBlock, removeLanguage, setLanguagesBlock } from '../../red
 import { editLibrariesBlock, removeLibrary, setLibrariesBlock } from '../../redux/LibrariesBlockSlice/librariesBlockSlice';
 import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlice/namePositionSlice';
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
-import { removeSocial, setSocialBlock } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
+import { editSocial, removeSocial, setSocial } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
 import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
@@ -17,7 +17,7 @@ import {IoMdRemoveCircle} from 'react-icons/io'
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
     const image = useSelector((state: RootState) => state.image.image)
-    const socialBlock = useSelector((state: RootState) => state.socialBlockSlice.socialBlock)
+    const socialsBlock = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
     const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
@@ -84,15 +84,17 @@ const Menu = () => {
                     </Select>
                 </FormControl>
                 <AddSocialBtn onClick={() => {
-                    dispatch(setSocialBlock(socialValue))
+                    dispatch(setSocial({name: socialValue, value:''}))
                 }}>Add Social</AddSocialBtn>
             </SocialFormWrapper>
             <SocialBlock>
                 {
-                    socialBlock && socialBlock.map((social, idx) => {
+                    socialsBlock && socialsBlock.map((social, idx) => {
                         return (
                             <TextFieldSocialContainer key={idx}>
-                                <TextField id="outlined-basic" label={social} variant="outlined" /><RemoveSocialBtn onClick={() => {
+                                <TextField id="outlined-basic" value={social.value ? social.value : ''} onChange={(e) => {
+                                    dispatch(editSocial({value: e.target.value, idx: idx}))
+                                }} label={social.name} variant="outlined" /><RemoveSocialBtn onClick={() => {
                                     dispatch(removeSocial(idx))
                                 }}><IoMdRemoveCircle /></RemoveSocialBtn>
                             </TextFieldSocialContainer>

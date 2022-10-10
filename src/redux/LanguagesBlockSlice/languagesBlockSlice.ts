@@ -15,7 +15,7 @@ const initialState: LanguagesBlockState = {
 }
 
 export const languagesBlockSlice = createSlice({
-  name: 'languagesBlock',
+  name: 'socialsBlock',
   initialState,
   reducers: {
     setLanguagesBlock: (state, action) => {
