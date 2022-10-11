@@ -101,6 +101,7 @@ export const TextFieldSocialContainer = styled.div`
 `
 
 export const RemoveSocialBtn = styled.button`
+    display: flex;
     margin-left: 0.5rem;
     color: red;
     padding: 10px;
@@ -243,8 +244,13 @@ export const ExperienceTextArea = styled(AboutYourselfTextArea)`
 export const ProjectsTitle = styled(InformationTitle)``
 
 export const ProjectsResponsibilitiesTitle = styled(InformationTitle)`
+    margin: 1rem 0 1rem 0;
     font-size: 1rem;
 `
+
+export const ProjectsDescriptionTitle = styled(ProjectsResponsibilitiesTitle)``
+export const ProjectsCustomerTitle = styled(ProjectsResponsibilitiesTitle)``
+export const ProjectsRoleTitle = styled(ProjectsResponsibilitiesTitle)``
 
 export const ProjectsBlockWrapper = styled(EducationBlockWrapper)`
     width: 70%;
@@ -253,7 +259,7 @@ export const ProjectsBlockWrapper = styled(EducationBlockWrapper)`
 export const ProjectsBlock = styled(EducationBlock)`
     width: 100%;
     display: flex;
-    align-items: baseline;
+    align-items: stretch;
 
 `
 
@@ -265,7 +271,9 @@ export const AddProjectResponsibilityBtn = styled(AddEduBtn)`
 
 export const RemoveProjectBtn = styled(RemoveSocialBtn)``
 
-export const RemoveResponsibilityBtn = styled(RemoveSocialBtn)``
+export const RemoveResponsibilityBtn = styled(RemoveSocialBtn)`
+    margin: 0;
+`
 
 export const ProjectsTextFieldsWrapper = styled.div`
     display: flex;
@@ -291,10 +299,35 @@ export const ResponsibilitiesWrapper = styled.div`
 
 export const ResponsibilitiesContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 `
 
+export const ResponsibilityContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+`
 
+export const ProjectDescriptionTextArea = styled(ExperienceTextArea)`
+    width: 60%;
+    height: 10rem;
+`
+
+export const ProjectDescriptionWrapper = styled(ResponsibilitiesWrapper)`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+`
+
+export const ProjectCustomerWrapper = styled(ProjectDescriptionWrapper)`
+    & > div {
+        width: 60%;
+    }
+`
+
+export const ProjectRoleWrapper = styled(ProjectCustomerWrapper)``
 
 
 

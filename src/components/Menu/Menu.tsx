@@ -274,15 +274,51 @@ const Menu = () => {
                     projectsBlock && projectsBlock.map((object, idx) => {
                         return (
                             <S.ProjectsBlock key={idx}>
-                                <div>
-                                    <TextField id="outlined-basic" value={object.content.Description} label='Description' onChange={(e) => {
+                                <div style={{width: '100%', border: '2px solid #348de7', borderRadius: '5px', padding: '0 1rem'}}>
+                                    <S.ProjectDescriptionWrapper>
+                                        <S.ProjectsDescriptionTitle>DESCRIPTION</S.ProjectsDescriptionTitle>
+                                        <S.ProjectDescriptionTextArea placeholder="Description" value={object.content.Description} onChange={(e) => {
                                         dispatch(editProjectsBlock({
                                             idx: idx,
                                             content: {
                                                 Description: e.target.value
                                             }
                                         }))
-                                    }} variant="outlined" />
+                                    }} />
+                                    </S.ProjectDescriptionWrapper>
+                                    <S.ProjectCustomerWrapper>
+                                        <S.ProjectsCustomerTitle>CUSTOMER</S.ProjectsCustomerTitle>
+                                        <TextField id="outlined-basic" label="Customer" value={object.content.Customer} onChange={(e) => {
+                                            dispatch(editProjectsBlock({
+                                                idx: idx,
+                                                content: {
+                                                    Customer: e.target.value
+                                                }
+                                            }))
+                                        }} variant="outlined" />
+                                    </S.ProjectCustomerWrapper>
+                                    <S.ProjectRoleWrapper>
+                                        <S.ProjectsRoleTitle>PROJECT ROLE</S.ProjectsRoleTitle>
+                                        <TextField id="outlined-basic" label="Project role" value={object.content.ProjectRole} onChange={(e) => {
+                                            dispatch(editProjectsBlock({
+                                                idx: idx,
+                                                content: {
+                                                    ProjectRole: e.target.value
+                                                }
+                                            }))
+                                        }} variant="outlined" />
+                                    </S.ProjectRoleWrapper>
+                                    <S.ProjectRoleWrapper>
+                                        <S.ProjectsRoleTitle>PROJECT TEAM SIZE</S.ProjectsRoleTitle>
+                                        <TextField id="outlined-basic" label="Project team size" value={object.content.ProjectTeamSize} onChange={(e) => {
+                                            dispatch(editProjectsBlock({
+                                                idx: idx,
+                                                content: {
+                                                    ProjectTeamSize: e.target.value
+                                                }
+                                            }))
+                                        }} variant="outlined" />
+                                    </S.ProjectRoleWrapper>
                                     
                                     <S.ResponsibilitiesWrapper>
                                         <S.ProjectsResponsibilitiesTitle>RESPONSIBILITIES</S.ProjectsResponsibilitiesTitle>
@@ -290,7 +326,7 @@ const Menu = () => {
                                             {
                                                 object.content.Responsibilities && object.content.Responsibilities.map((responsibility, index) => {
                                                     return (
-                                                        <div key={responsibility.name}>
+                                                        <S.ResponsibilityContainer key={responsibility.name}>
                                                             <TextField size="small" id="outlined-basic" value={responsibility.value} label={`Responsibility №${index + 1}`} onChange={(e) => {
                                                                 dispatch(editResponsibility({
                                                                     idx: index,
@@ -304,7 +340,7 @@ const Menu = () => {
                                                                     parentIdx: idx,
                                                                 }))
                                                             }}><IoMdRemoveCircle /></S.RemoveResponsibilityBtn>
-                                                        </div>
+                                                        </S.ResponsibilityContainer>
                                                     )
                                                 })
                                             }
