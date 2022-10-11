@@ -206,7 +206,36 @@ export const TextFieldLanguageContainer = styled(TextFieldSocialContainer)``
 
 export const RemoveLanguagesBtn = styled(RemoveSocialBtn)``
 
+// =========== Education =====================
+export const ExperienceTitle = styled(InformationTitle)``
 
+export const ExperienceBlockWrapper = styled(EducationBlockWrapper)``
+
+export const ExperienceBlock = styled(EducationBlock)`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 202px;
+`
+
+export const AddExpBtn = styled(AddEduBtn)``
+
+export const RemoveExpBtn = styled(RemoveSocialBtn)``
+
+export const ExperienceTextFieldsWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    & > div {
+        margin: 5px;
+    }
+`
+
+export const ExperienceTextArea = styled(AboutYourselfTextArea)`
+    width: 50%;
+    height: 100%;
+    font-size: 1rem;
+`
 
 
 

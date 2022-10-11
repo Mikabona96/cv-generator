@@ -10,15 +10,17 @@ import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlic
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
 import { editSocial, removeSocial, setSocial } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
+import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
+import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
     const image = useSelector((state: RootState) => state.image.image)
     const socialsBlock = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
     const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
+    const experienceBlock = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
@@ -211,6 +213,59 @@ const Menu = () => {
                     dispatch(setLanguagesBlock({name: 'language', value:''}))
                 }}>Add Languages</AddLanguagesBtn>
             </LanguagesBlockWrapper>
+            <ExperienceTitle>EXPERIENCE</ExperienceTitle>
+            <ExperienceBlockWrapper>
+                {
+                    experienceBlock && experienceBlock.map((object, idx) => {
+                        return (
+                            <ExperienceBlock key={idx}>
+                                <ExperienceTextFieldsWrapper>
+
+                                    <TextField id="outlined-basic" value={object.content.Position} label='Position' onChange={(e) => {
+                                        dispatch(editExperienceBlock({
+                                            idx: idx,
+                                            content: {
+                                                Position: e.target.value
+                                            }
+                                        }))
+                                    }} variant="outlined" />
+                                    <TextField id="outlined-basic" value={object.content.Years} label='Years' onChange={(e) => {
+                                        dispatch(editExperienceBlock({
+                                            idx: idx,
+                                            content: {
+                                                Years: e.target.value
+                                            }
+                                        }))
+                                    }} variant="outlined" />
+                                    <TextField id="outlined-basic" value={object.content.CompanyName} label='Company name' onChange={(e) => {
+                                        dispatch(editExperienceBlock({
+                                            idx: idx,
+                                            content: {
+                                                CompanyName: e.target.value
+                                            }
+                                        }))
+                                    }} variant="outlined" />
+                                    
+                                </ExperienceTextFieldsWrapper>
+                                <ExperienceTextArea placeholder='Description' value={object.content.Description} onChange={(e) => {
+                                        dispatch(editExperienceBlock({
+                                            idx: idx,
+                                            content: {
+                                                Description: e.target.value
+                                            }
+                                        }))
+                                    }}/>
+                                <RemoveExpBtn onClick={() => {
+                                    dispatch(removeExperience(idx))
+                                }}><IoMdRemoveCircle /></RemoveExpBtn>
+                            </ExperienceBlock>
+                        )
+                    })
+                }
+                <AddExpBtn onClick={() => {
+                    dispatch(setExperienceBlock({name: 'educationLine', content: {Position: '', CompanyName: '', Years: '', Descrption: ''}}))
+                }}>Add Experience</AddExpBtn>
+            </ExperienceBlockWrapper>
         </MenuSection>
     )
 }
