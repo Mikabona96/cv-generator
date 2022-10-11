@@ -103,7 +103,8 @@ export const projectsBlockSlice = createSlice({
             if (idx !== index) {
               return responsibility
             }
-            return
+            
+            return undefined
           })
       }
     }, 

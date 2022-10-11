@@ -242,19 +242,26 @@ export const ExperienceTextArea = styled(AboutYourselfTextArea)`
 // =========== Projects =====================
 export const ProjectsTitle = styled(InformationTitle)``
 
-export const ProjectsBlockWrapper = styled(EducationBlockWrapper)``
+export const ProjectsResponsibilitiesTitle = styled(InformationTitle)`
+    font-size: 1rem;
+`
+
+export const ProjectsBlockWrapper = styled(EducationBlockWrapper)`
+    width: 70%;
+`
 
 export const ProjectsBlock = styled(EducationBlock)`
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 202px;
+    align-items: baseline;
+
 `
 
 export const AddProjectBtn = styled(AddEduBtn)``
 
-export const AddProjectResponsibilityBtn = styled(AddEduBtn)``
+export const AddProjectResponsibilityBtn = styled(AddEduBtn)`
+    align-self: flex-end;
+`
 
 export const RemoveProjectBtn = styled(RemoveSocialBtn)``
 
@@ -273,6 +280,18 @@ export const ProjectsTextArea = styled(AboutYourselfTextArea)`
     width: 50%;
     height: 100%;
     font-size: 1rem;
+`
+
+export const ResponsibilitiesWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 1rem 0;
+    min-height: 165px;
+`
+
+export const ResponsibilitiesContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 `
 
 

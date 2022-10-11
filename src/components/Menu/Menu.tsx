@@ -10,7 +10,7 @@ import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlic
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
 import { editSocial, removeSocial, setSocial } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddProjectBtn, AddProjectResponsibilityBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, ProjectsBlock, ProjectsBlockWrapper, ProjectsTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveProjectBtn, RemoveResponsibilityBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
+import * as S from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
@@ -31,17 +31,17 @@ const Menu = () => {
     }, [image])
 
     return (
-        <MenuSection>
-            <ImageBlock>
-                <Image src={image !== '' ? image : userImg} alt='Image' />
-                <InputImage accept="image/png, image/jpeg" onChange={(event) => {
+        <S.MenuSection>
+            <S.ImageBlock>
+                <S.Image src={image !== '' ? image : userImg} alt='Image' />
+                <S.InputImage accept="image/png, image/jpeg" onChange={(event) => {
                     if (event.target.files !== null) {
                         dispatch(setImage(URL.createObjectURL(event.target.files[0])))
                     }
                 }} type="file" />
-            </ImageBlock>
-            <NameAndPositionTitle>NAME AND POSITION</NameAndPositionTitle>
-            <NameAndPositionBlock>
+            </S.ImageBlock>
+            <S.NameAndPositionTitle>NAME AND POSITION</S.NameAndPositionTitle>
+            <S.NameAndPositionBlock>
                 <TextField id="outlined-basic" label="Your Name" onChange={(e) => {
                     dispatch(setName(e.target.value))
                 }} variant="outlined" />
@@ -51,9 +51,9 @@ const Menu = () => {
                 <TextField id="outlined-basic" label="Your Position" onChange={(e) => {
                     dispatch(setPosition(e.target.value))
                 }} variant="outlined" />
-            </NameAndPositionBlock>
-            <InformationTitle>INFORMATION</InformationTitle>
-            <InformationBlock>
+            </S.NameAndPositionBlock>
+            <S.InformationTitle>INFORMATION</S.InformationTitle>
+            <S.InformationBlock>
                 <TextField id="outlined-basic" label="Your Adress: str. № 123. city, country" onChange={(e) => {
                     dispatch(setAdress(e.target.value))
                 }} variant="outlined" />
@@ -63,9 +63,9 @@ const Menu = () => {
                 <TextField id="outlined-basic" label="Your phone number" onChange={(e) => {
                     dispatch(setPhone(e.target.value))
                 }} variant="outlined" />
-            </InformationBlock>
-            <SocialTitle>SOCIAL</SocialTitle>
-            <SocialFormWrapper>
+            </S.InformationBlock>
+            <S.SocialTitle>SOCIAL</S.SocialTitle>
+            <S.SocialFormWrapper>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Social</InputLabel>
                     <Select
@@ -87,35 +87,35 @@ const Menu = () => {
                         <MenuItem value={'Skype'}>Skype</MenuItem>
                     </Select>
                 </FormControl>
-                <AddSocialBtn onClick={() => {
+                <S.AddSocialBtn onClick={() => {
                     dispatch(setSocial({name: socialValue, value:''}))
-                }}>Add Social</AddSocialBtn>
-            </SocialFormWrapper>
-            <SocialBlock>
+                }}>Add Social</S.AddSocialBtn>
+            </S.SocialFormWrapper>
+            <S.SocialBlock>
                 {
                     socialsBlock && socialsBlock.map((social, idx) => {
                         return (
-                            <TextFieldSocialContainer key={idx}>
+                            <S.TextFieldSocialContainer key={idx}>
                                 <TextField id="outlined-basic" value={social.value ? social.value : ''} onChange={(e) => {
                                     dispatch(editSocial({value: e.target.value, idx: idx}))
-                                }} label={social.name} variant="outlined" /><RemoveSocialBtn onClick={() => {
+                                }} label={social.name} variant="outlined" /><S.RemoveSocialBtn onClick={() => {
                                     dispatch(removeSocial(idx))
-                                }}><IoMdRemoveCircle /></RemoveSocialBtn>
-                            </TextFieldSocialContainer>
+                                }}><IoMdRemoveCircle /></S.RemoveSocialBtn>
+                            </S.TextFieldSocialContainer>
                         )
                     })
                 }
-            </SocialBlock>
-            <AboutYourselfTitle>ABOUT YOURSELF</AboutYourselfTitle>
-            <AboutYourselfBlock>
-                <AboutYourselfTextArea />
-            </AboutYourselfBlock>
-            <EducationTitle>EDUCATION</EducationTitle>
-            <EducationBlockWrapper>
+            </S.SocialBlock>
+            <S.AboutYourselfTitle>ABOUT YOURSELF</S.AboutYourselfTitle>
+            <S.AboutYourselfBlock>
+                <S.AboutYourselfTextArea />
+            </S.AboutYourselfBlock>
+            <S.EducationTitle>EDUCATION</S.EducationTitle>
+            <S.EducationBlockWrapper>
                 {
                     educationBlock && educationBlock.map((object, idx) => {
                         return (
-                            <EducationBlock key={idx}>
+                            <S.EducationBlock key={idx}>
                                 <TextField id="outlined-basic" value={object.content.Specialization} label='Specialization' onChange={(e) => {
                                     dispatch(editEducationBlock({
                                         idx: idx,
@@ -140,88 +140,88 @@ const Menu = () => {
                                         }
                                     }))
                                 }} variant="outlined" />
-                                <RemoveEduBtn onClick={() => {
+                                <S.RemoveEduBtn onClick={() => {
                                     dispatch(removeEducation(idx))
-                                }}><IoMdRemoveCircle /></RemoveEduBtn>
-                            </EducationBlock>
+                                }}><IoMdRemoveCircle /></S.RemoveEduBtn>
+                            </S.EducationBlock>
                         )
                     })
                 }
-                <AddEduBtn onClick={() => {
+                <S.AddEduBtn onClick={() => {
                     dispatch(setEducationBlock({name: 'educationLine', content: {Specialization: '', Institution: '', Years: ''}}))
-                }}>Add Education</AddEduBtn>
-            </EducationBlockWrapper>
-            <SkillsTitle>SKILLS</SkillsTitle>
-            <SkillsBlockWrapper>
-                <SkillsBlock>
+                }}>Add Education</S.AddEduBtn>
+            </S.EducationBlockWrapper>
+            <S.SkillsTitle>SKILLS</S.SkillsTitle>
+            <S.SkillsBlockWrapper>
+                <S.SkillsBlock>
                     {
                        skillsBlock && skillsBlock.map((skill, idx: number) => {
                             return (
-                                <TextFieldSkillsContainer key={idx}>
+                                <S.TextFieldSkillsContainer key={idx}>
                                     <TextField id="outlined-basic" value={skill.value ? skill.value : ''} label={`Your skill №${idx + 1}`} variant="outlined"  onChange={(e) => {
                                         dispatch(editSkillBlock({value: e.target.value, idx: idx}))
-                                    }}/><RemoveSkillsBtn onClick={() => {
+                                    }}/><S.RemoveSkillsBtn onClick={() => {
                                         dispatch(removeSkil(idx))
-                                    }}><IoMdRemoveCircle /></RemoveSkillsBtn>
-                                </TextFieldSkillsContainer>
+                                    }}><IoMdRemoveCircle /></S.RemoveSkillsBtn>
+                                </S.TextFieldSkillsContainer>
                             )
                         })
                     }
-                </SkillsBlock>
-                <AddSkillsBtn onClick={() => {
+                </S.SkillsBlock>
+                <S.AddSkillsBtn onClick={() => {
                         dispatch(setSkillsBlock({name: 'skill', value:''}))
-                    }}>Add Skills</AddSkillsBtn>
-            </SkillsBlockWrapper>
-            <LibrariesTitle>LIBRARIES</LibrariesTitle>
-            <LibrariesBlockWrapper>
-                <LibrariesBlock>
+                    }}>Add Skills</S.AddSkillsBtn>
+            </S.SkillsBlockWrapper>
+            <S.LibrariesTitle>LIBRARIES</S.LibrariesTitle>
+            <S.LibrariesBlockWrapper>
+                <S.LibrariesBlock>
                     {
                         librariesBlock && librariesBlock.map((library, idx: number) => {          
                             return (
-                                <TextFieldLibrariesContainer key={idx}>
+                                <S.TextFieldLibrariesContainer key={idx}>
                                     <TextField id="outlined-basic" value={library.value ? library.value : ''} onChange={(e) => {
                                         dispatch(editLibrariesBlock({value: e.target.value, idx: idx}))
-                                    }}  label={`Your Library №${idx + 1}`} variant="outlined" /> <RemoveLibrariesBtn onClick={() => {
+                                    }}  label={`Your Library №${idx + 1}`} variant="outlined" /> <S.RemoveLibrariesBtn onClick={() => {
                                         dispatch(removeLibrary(idx))
-                                    }}><IoMdRemoveCircle /></RemoveLibrariesBtn>
-                                </TextFieldLibrariesContainer>
+                                    }}><IoMdRemoveCircle /></S.RemoveLibrariesBtn>
+                                </S.TextFieldLibrariesContainer>
                             )
                         })
                     }
-                </LibrariesBlock>
-                <AddSkillsBtn onClick={() => {
+                </S.LibrariesBlock>
+                <S.AddSkillsBtn onClick={() => {
                         dispatch(setLibrariesBlock({name: 'library', value:''}))
-                    }}>Add Library</AddSkillsBtn>
-            </LibrariesBlockWrapper>
-            <LanguagesTitle>LANGUAGES</LanguagesTitle>
-            <LanguagesBlockWrapper>
-                <LanguagesBlock>
+                    }}>Add Library</S.AddSkillsBtn>
+            </S.LibrariesBlockWrapper>
+            <S.LanguagesTitle>LANGUAGES</S.LanguagesTitle>
+            <S.LanguagesBlockWrapper>
+                <S.LanguagesBlock>
                     {
                         languagesBlock && languagesBlock.map((language, idx: number) => {
                             return (
-                                <TextFieldLanguageContainer>
+                                <S.TextFieldLanguageContainer>
                                     <TextField key={idx} id="outlined-basic" value={language.value ? language.value : ''} onChange={(e) => {
                                         dispatch(editLanguagesBlock({value: e.target.value, idx: idx}))
                                     }} label={`Your language №${idx + 1}`} variant="outlined" />
-                                    <RemoveLibrariesBtn onClick={() => {
+                                    <S.RemoveLibrariesBtn onClick={() => {
                                         dispatch(removeLanguage(idx))
-                                    }}><IoMdRemoveCircle /></RemoveLibrariesBtn>
-                                </TextFieldLanguageContainer>
+                                    }}><IoMdRemoveCircle /></S.RemoveLibrariesBtn>
+                                </S.TextFieldLanguageContainer>
                             )
                         })
                     }
-                </LanguagesBlock>
-                <AddLanguagesBtn onClick={() => {
+                </S.LanguagesBlock>
+                <S.AddLanguagesBtn onClick={() => {
                     dispatch(setLanguagesBlock({name: 'language', value:''}))
-                }}>Add Languages</AddLanguagesBtn>
-            </LanguagesBlockWrapper>
-            <ExperienceTitle>EXPERIENCE</ExperienceTitle>
-            <ExperienceBlockWrapper>
+                }}>Add Languages</S.AddLanguagesBtn>
+            </S.LanguagesBlockWrapper>
+            <S.ExperienceTitle>EXPERIENCE</S.ExperienceTitle>
+            <S.ExperienceBlockWrapper>
                 {
                     experienceBlock && experienceBlock.map((object, idx) => {
                         return (
-                            <ExperienceBlock key={idx}>
-                                <ExperienceTextFieldsWrapper>
+                            <S.ExperienceBlock key={idx}>
+                                <S.ExperienceTextFieldsWrapper>
 
                                     <TextField id="outlined-basic" value={object.content.Position} label='Position' onChange={(e) => {
                                         dispatch(editExperienceBlock({
@@ -248,8 +248,8 @@ const Menu = () => {
                                         }))
                                     }} variant="outlined" />
                                     
-                                </ExperienceTextFieldsWrapper>
-                                <ExperienceTextArea placeholder='Description' value={object.content.Description} onChange={(e) => {
+                                </S.ExperienceTextFieldsWrapper>
+                                <S.ExperienceTextArea placeholder='Description' value={object.content.Description} onChange={(e) => {
                                         dispatch(editExperienceBlock({
                                             idx: idx,
                                             content: {
@@ -257,116 +257,76 @@ const Menu = () => {
                                             }
                                         }))
                                     }}/>
-                                <RemoveExpBtn onClick={() => {
+                                <S.RemoveExpBtn onClick={() => {
                                     dispatch(removeExperience(idx))
-                                }}><IoMdRemoveCircle /></RemoveExpBtn>
-                            </ExperienceBlock>
+                                }}><IoMdRemoveCircle /></S.RemoveExpBtn>
+                            </S.ExperienceBlock>
                         )
                     })
                 }
-                <AddExpBtn onClick={() => {
+                <S.AddExpBtn onClick={() => {
                     dispatch(setExperienceBlock({name: 'experienceLine', content: {Position: '', CompanyName: '', Years: '', Descrption: ''}}))
-                }}>Add Experience</AddExpBtn>
-            </ExperienceBlockWrapper>
-            <ProjectsTitle>PROJECTS</ProjectsTitle>
-            <ProjectsBlockWrapper>
+                }}>Add Experience</S.AddExpBtn>
+            </S.ExperienceBlockWrapper>
+            <S.ProjectsTitle>PROJECTS</S.ProjectsTitle>
+            <S.ProjectsBlockWrapper>
                 {
                     projectsBlock && projectsBlock.map((object, idx) => {
                         return (
-                            <ProjectsBlock key={idx}>
-                                <TextField id="outlined-basic" value={object.content.Description} label='Description' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            Description: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" />
-                                {/* <TextField id="outlined-basic" value={object.content.Customer} label='Customer' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            Customer: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" />
-                                <TextField id="outlined-basic" value={object.content.InvolvementDuration} label='Involvement duration' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            InvolvementDuration: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" />
-                                <TextField id="outlined-basic" value={object.content.ProjectRole} label='Project role' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            ProjectRole: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" /> */}
-                                {/* <TextField id="outlined-basic" value={object.content.Responsibilities} label='Responsibilities' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            Responsibilities: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" /> */}
-                                {
-                                    object.content.Responsibilities && object.content.Responsibilities.map((responsibility, index) => {
-                                        return (
-                                            <div key={responsibility.name}>
-                                                <TextField id="outlined-basic" value={responsibility.value} label='Responsibilities' onChange={(e) => {
-                                                    dispatch(editResponsibility({
-                                                        idx: index,
-                                                        parentIdx: idx,
-                                                        value: e.target.value
-                                                    }))
-                                                }} variant="outlined" />
-                                                <RemoveResponsibilityBtn onClick={() => {
-                                                    dispatch(removeResponsibility({
-                                                        idx: index,
-                                                        parentIdx: idx,
-                                                    }))
-                                                }}><IoMdRemoveCircle /></RemoveResponsibilityBtn>
-                                            </div>
-                                        )
-                                    })
-                                }
-                                <AddProjectResponsibilityBtn onClick={() => {
-                                    dispatch(setResponsibility({idx: idx, payload: {name: 'responsibility', value: ''}}))
-                                }}>Add responsibility</AddProjectResponsibilityBtn>
-                                <TextField id="outlined-basic" value={object.content.ProjectTeamSize} label='Project team size' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            ProjectTeamSize: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" />
-                                <TextField id="outlined-basic" value={object.content.ToolsAndTechnologies} label='Tools & technologies' onChange={(e) => {
-                                    dispatch(editProjectsBlock({
-                                        idx: idx,
-                                        content: {
-                                            ToolsAndTechnologies: e.target.value
-                                        }
-                                    }))
-                                }} variant="outlined" />
+                            <S.ProjectsBlock key={idx}>
+                                <div>
+                                    <TextField id="outlined-basic" value={object.content.Description} label='Description' onChange={(e) => {
+                                        dispatch(editProjectsBlock({
+                                            idx: idx,
+                                            content: {
+                                                Description: e.target.value
+                                            }
+                                        }))
+                                    }} variant="outlined" />
+                                    
+                                    <S.ResponsibilitiesWrapper>
+                                        <S.ProjectsResponsibilitiesTitle>RESPONSIBILITIES</S.ProjectsResponsibilitiesTitle>
+                                        <S.ResponsibilitiesContainer>
+                                            {
+                                                object.content.Responsibilities && object.content.Responsibilities.map((responsibility, index) => {
+                                                    return (
+                                                        <div key={responsibility.name}>
+                                                            <TextField size="small" id="outlined-basic" value={responsibility.value} label={`Responsibility №${index + 1}`} onChange={(e) => {
+                                                                dispatch(editResponsibility({
+                                                                    idx: index,
+                                                                    parentIdx: idx,
+                                                                    value: e.target.value
+                                                                }))
+                                                            }} variant="outlined" />
+                                                            <S.RemoveResponsibilityBtn onClick={() => {
+                                                                dispatch(removeResponsibility({
+                                                                    idx: index,
+                                                                    parentIdx: idx,
+                                                                }))
+                                                            }}><IoMdRemoveCircle /></S.RemoveResponsibilityBtn>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </S.ResponsibilitiesContainer>
+                                        <S.AddProjectResponsibilityBtn onClick={() => {
+                                            dispatch(setResponsibility({idx: idx, payload: {name: 'responsibility', value: ''}}))
+                                        }}>Add responsibility</S.AddProjectResponsibilityBtn>
+                                    </S.ResponsibilitiesWrapper>
+                                </div>
                                 
-                            <RemoveProjectBtn onClick={() => {
-                                dispatch(removeProjects(idx))
-                            }}><IoMdRemoveCircle /></RemoveProjectBtn>
-                            </ProjectsBlock>
+                                <S.RemoveProjectBtn onClick={() => {
+                                    dispatch(removeProjects(idx))
+                                }}><IoMdRemoveCircle /></S.RemoveProjectBtn>
+                            </S.ProjectsBlock>
                         )
                     })
                 }
-                <AddProjectBtn onClick={() => {
+                <S.AddProjectBtn onClick={() => {
                     dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
-                }}>Add Experience</AddProjectBtn>
-            </ProjectsBlockWrapper>
-        </MenuSection>
+                }}>Add Project</S.AddProjectBtn>
+            </S.ProjectsBlockWrapper>
+        </S.MenuSection>
     )
 }
 
