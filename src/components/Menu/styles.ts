@@ -251,6 +251,7 @@ export const ProjectsResponsibilitiesTitle = styled(InformationTitle)`
 export const ProjectsDescriptionTitle = styled(ProjectsResponsibilitiesTitle)``
 export const ProjectsCustomerTitle = styled(ProjectsResponsibilitiesTitle)``
 export const ProjectsRoleTitle = styled(ProjectsResponsibilitiesTitle)``
+export const ProjectsIvolvementDurationTitle = styled(ProjectsResponsibilitiesTitle)``
 
 export const ProjectsBlockWrapper = styled(EducationBlockWrapper)`
     width: 70%;
@@ -328,6 +329,16 @@ export const ProjectCustomerWrapper = styled(ProjectDescriptionWrapper)`
 `
 
 export const ProjectRoleWrapper = styled(ProjectCustomerWrapper)``
+
+export const ProjectInvolvementDurationWrapper = styled(ProjectCustomerWrapper)``
+export const ProjectInvolvementDurationDatePicker = styled.input`
+    border: 1px solid rgba(155, 155, 155, 0.4);
+    outline: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-left: 1rem;
+`
 
 
 

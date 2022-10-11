@@ -10,7 +10,7 @@ type ProjectsContent = {
   content: {
       Description?: string
       Customer?: string,
-      InvolvementDuration?: string
+      InvolvementDuration?: {from: '', to: ''}
       ProjectRole?: string,
       Responsibilities?: Array<ResponsibilityType> | [],
       ProjectTeamSize?: string,

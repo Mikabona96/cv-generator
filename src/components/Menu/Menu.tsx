@@ -1,4 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { editEducationBlock, removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
@@ -319,6 +320,27 @@ const Menu = () => {
                                             }))
                                         }} variant="outlined" />
                                     </S.ProjectRoleWrapper>
+                                    <S.ProjectInvolvementDurationWrapper>
+                                        <S.ProjectsIvolvementDurationTitle>IVOLVEMENT DURATIION</S.ProjectsIvolvementDurationTitle>
+                                        {/* <TextField id="outlined-basic" label="Project team size" value={object.content.ProjectTeamSize} onChange={(e) => {
+                                            dispatch(editProjectsBlock({
+                                                idx: idx,
+                                                content: {
+                                                    ProjectTeamSize: e.target.value
+                                                }
+                                            }))
+                                        }} variant="outlined" /> */}
+                                        <div style={{display: 'flex', width: '60%', justifyContent: 'space-between'}}>
+                                            <div>
+                                                From:
+                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => console.log(e.target.value)}/>
+                                            </div>
+                                            <div>
+                                                To:
+                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => console.log(e.target.value)}/>
+                                            </div>
+                                        </div>
+                                    </S.ProjectInvolvementDurationWrapper>
                                     
                                     <S.ResponsibilitiesWrapper>
                                         <S.ProjectsResponsibilitiesTitle>RESPONSIBILITIES</S.ProjectsResponsibilitiesTitle>
