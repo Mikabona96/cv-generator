@@ -270,6 +270,10 @@ export const AddProjectResponsibilityBtn = styled(AddEduBtn)`
     align-self: flex-end;
 `
 
+export const AddProjectTechnologiesBtn = styled(AddEduBtn)`
+    align-self: flex-end;
+`
+
 export const RemoveProjectBtn = styled(RemoveSocialBtn)`
     height: 44px;
 `

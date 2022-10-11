@@ -1,5 +1,4 @@
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { editEducationBlock, removeEducation, setEducationBlock } from '../../redux/EducationBlockSlice/educationBlockSlice';
@@ -15,7 +14,7 @@ import * as S from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
-import { editProjectsBlock, editResponsibility, removeProjects, removeResponsibility, setDate, setProjectsBlock, setResponsibility } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
+import { editProjectsBlock, editResponsibility, editTechnologies, removeProjects, removeResponsibility, removeTechnologies, setDate, setProjectsBlock, setResponsibility, setTechnologies } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -275,7 +274,8 @@ const Menu = () => {
                     projectsBlock && projectsBlock.map((object, idx) => {
                         return (
                             <S.ProjectsBlock key={idx}>
-                                <div style={{width: '100%', border: '2px solid #348de7', borderRadius: '5px', padding: '0 1rem'}}>
+                                <div style={{width: '100%', padding: '0 1rem'}}>
+                                <h3>Project №{idx + 1}</h3>
                                     <S.ProjectDescriptionWrapper>
                                         <S.ProjectsDescriptionTitle>DESCRIPTION</S.ProjectsDescriptionTitle>
                                         <S.ProjectDescriptionTextArea placeholder="Description" value={object.content.Description} onChange={(e) => {
@@ -371,6 +371,35 @@ const Menu = () => {
                                             dispatch(setResponsibility({idx: idx, payload: {name: 'responsibility', value: ''}}))
                                         }}>Add responsibility</S.AddProjectResponsibilityBtn>
                                     </S.ResponsibilitiesWrapper>
+                                    <S.ResponsibilitiesWrapper>
+                                        <S.ProjectsResponsibilitiesTitle>TOOLS& TECHNOLOGIES</S.ProjectsResponsibilitiesTitle>
+                                        <S.ResponsibilitiesContainer>
+                                            {
+                                                object.content.ToolsAndTechnologies && object.content.ToolsAndTechnologies.map((technology, index) => {
+                                                    return (
+                                                        <S.ResponsibilityContainer key={technology.name}>
+                                                            <TextField size="small" id="outlined-basic" value={technology.value} label={`Technology №${index + 1}`} onChange={(e) => {
+                                                                dispatch(editTechnologies({
+                                                                    idx: index,
+                                                                    parentIdx: idx,
+                                                                    value: e.target.value
+                                                                }))
+                                                            }} variant="outlined" />
+                                                            <S.RemoveResponsibilityBtn onClick={() => {
+                                                                dispatch(removeTechnologies({
+                                                                    idx: index,
+                                                                    parentIdx: idx,
+                                                                }))
+                                                            }}><IoMdRemoveCircle /></S.RemoveResponsibilityBtn>
+                                                        </S.ResponsibilityContainer>
+                                                    )
+                                                })
+                                            }
+                                        </S.ResponsibilitiesContainer>
+                                        <S.AddProjectTechnologiesBtn onClick={() => {
+                                            dispatch(setTechnologies({idx: idx, payload: {name: 'technology', value: ''}}))
+                                        }}>Add technology</S.AddProjectTechnologiesBtn>
+                                    </S.ResponsibilitiesWrapper>
                                 </div>
                                 
                                 <S.RemoveProjectBtn onClick={() => {
@@ -381,7 +410,7 @@ const Menu = () => {
                     })
                 }
                 <S.AddProjectBtn onClick={() => {
-                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: {from: '', to: ''}, ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
+                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: {from: '', to: ''}, ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: []}}))
                 }}>Add Project</S.AddProjectBtn>
             </S.ProjectsBlockWrapper>
         </S.MenuSection>

@@ -14,19 +14,21 @@ type ProjectsContent = {
       ProjectRole?: string,
       Responsibilities?: Array<ResponsibilityType> | [],
       ProjectTeamSize?: string,
-      ToolsAndTechnologies?: string,
+      ToolsAndTechnologies?: Array<ResponsibilityType> | [],
   },
 }
 export interface ProjectsBlockState {
   projectsBlock: Array<ProjectsContent> | null,
   ProjectsLinesCounter: number,
   ResponsibilitiesLinesCounter: number
+  TechnologyLinesCounter: number
 }
 
 const initialState: ProjectsBlockState = {
   projectsBlock: null,
   ProjectsLinesCounter: 0,
-  ResponsibilitiesLinesCounter: 0
+  ResponsibilitiesLinesCounter: 0,
+  TechnologyLinesCounter: 0
 }
 
 export const projectsBlockSlice = createSlice({
@@ -108,6 +110,51 @@ export const projectsBlockSlice = createSlice({
           })
       }
     },
+    setTechnologies: (state, action) => {
+      const index = action.payload.idx
+      const payload = {...action.payload.payload, name: `${action.payload.payload.name}${state.TechnologyLinesCounter}`}
+
+      if (state.projectsBlock !== null) {
+          state.projectsBlock.map((project, idx) => {
+          if (idx === index) {
+            if (project.content.ToolsAndTechnologies) {
+              project.content.ToolsAndTechnologies = [...project.content.ToolsAndTechnologies, payload]
+            }
+          }
+          return project
+        })
+      }
+      
+      state.TechnologyLinesCounter++
+    },
+    editTechnologies: (state, action) => {
+      const index = action.payload.idx
+      const parentIdx = action.payload.parentIdx
+      const value = action.payload.value
+
+      if (state.projectsBlock && state.projectsBlock[parentIdx] && state.projectsBlock[parentIdx].content && state.projectsBlock[parentIdx].content.ToolsAndTechnologies) {
+          state.projectsBlock[parentIdx].content.ToolsAndTechnologies?.map((technology, idx) => {
+            if (idx === index) {
+              technology.value = value
+            }
+            return technology
+          })
+      }
+    }, 
+    removeTechnologies: (state, action) => {
+      const index = action.payload.idx
+      const parentIdx = action.payload.parentIdx
+
+      if (state.projectsBlock && state.projectsBlock[parentIdx] && state.projectsBlock[parentIdx].content && state.projectsBlock[parentIdx].content.ToolsAndTechnologies) {
+        state.projectsBlock[parentIdx].content.ToolsAndTechnologies = state.projectsBlock[parentIdx].content.ToolsAndTechnologies?.filter((technology, idx) => {
+            if (idx !== index) {
+              return technology
+            }
+            
+            return undefined
+          })
+      }
+    },
     setDate: (state, action) => {
       const idx = action.payload.idx
       const payload = action.payload.payload
@@ -120,6 +167,6 @@ export const projectsBlockSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setProjectsBlock, removeProjects, editProjectsBlock, setResponsibility, editResponsibility, removeResponsibility, setDate } = projectsBlockSlice.actions
+export const { setProjectsBlock, removeProjects, editProjectsBlock, setResponsibility, editResponsibility, removeResponsibility, setDate, setTechnologies, editTechnologies, removeTechnologies } = projectsBlockSlice.actions
 
 export default projectsBlockSlice.reducer
