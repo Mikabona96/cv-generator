@@ -248,12 +248,17 @@ export const ProjectsBlock = styled(EducationBlock)`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     height: 202px;
 `
 
 export const AddProjectBtn = styled(AddEduBtn)``
 
+export const AddProjectResponsibilityBtn = styled(AddEduBtn)``
+
 export const RemoveProjectBtn = styled(RemoveSocialBtn)``
+
+export const RemoveResponsibilityBtn = styled(RemoveSocialBtn)``
 
 export const ProjectsTextFieldsWrapper = styled.div`
     display: flex;

@@ -10,11 +10,11 @@ import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlic
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
 import { editSocial, removeSocial, setSocial } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddProjectBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, ProjectsBlock, ProjectsBlockWrapper, ProjectsTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveProjectBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
+import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddProjectBtn, AddProjectResponsibilityBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, ProjectsBlock, ProjectsBlockWrapper, ProjectsTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveProjectBtn, RemoveResponsibilityBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
-import { editProjectsBlock, removeProjects, setProjectsBlock } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
+import { editProjectsBlock, editResponsibility, removeProjects, removeResponsibility, setProjectsBlock, setResponsibility } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -282,7 +282,7 @@ const Menu = () => {
                                         }
                                     }))
                                 }} variant="outlined" />
-                                <TextField id="outlined-basic" value={object.content.Customer} label='Customer' onChange={(e) => {
+                                {/* <TextField id="outlined-basic" value={object.content.Customer} label='Customer' onChange={(e) => {
                                     dispatch(editProjectsBlock({
                                         idx: idx,
                                         content: {
@@ -305,15 +305,39 @@ const Menu = () => {
                                             ProjectRole: e.target.value
                                         }
                                     }))
-                                }} variant="outlined" />
-                                <TextField id="outlined-basic" value={object.content.Responsibilities} label='Responsibilities' onChange={(e) => {
+                                }} variant="outlined" /> */}
+                                {/* <TextField id="outlined-basic" value={object.content.Responsibilities} label='Responsibilities' onChange={(e) => {
                                     dispatch(editProjectsBlock({
                                         idx: idx,
                                         content: {
                                             Responsibilities: e.target.value
                                         }
                                     }))
-                                }} variant="outlined" />
+                                }} variant="outlined" /> */}
+                                {
+                                    object.content.Responsibilities && object.content.Responsibilities.map((responsibility, index) => {
+                                        return (
+                                            <div key={responsibility.name}>
+                                                <TextField id="outlined-basic" value={responsibility.value} label='Responsibilities' onChange={(e) => {
+                                                    dispatch(editResponsibility({
+                                                        idx: index,
+                                                        parentIdx: idx,
+                                                        value: e.target.value
+                                                    }))
+                                                }} variant="outlined" />
+                                                <RemoveResponsibilityBtn onClick={() => {
+                                                    dispatch(removeResponsibility({
+                                                        idx: index,
+                                                        parentIdx: idx,
+                                                    }))
+                                                }}><IoMdRemoveCircle /></RemoveResponsibilityBtn>
+                                            </div>
+                                        )
+                                    })
+                                }
+                                <AddProjectResponsibilityBtn onClick={() => {
+                                    dispatch(setResponsibility({idx: idx, payload: {name: 'responsibility', value: ''}}))
+                                }}>Add responsibility</AddProjectResponsibilityBtn>
                                 <TextField id="outlined-basic" value={object.content.ProjectTeamSize} label='Project team size' onChange={(e) => {
                                     dispatch(editProjectsBlock({
                                         idx: idx,
@@ -339,7 +363,7 @@ const Menu = () => {
                     })
                 }
                 <AddProjectBtn onClick={() => {
-                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: '', ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
+                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
                 }}>Add Experience</AddProjectBtn>
             </ProjectsBlockWrapper>
         </MenuSection>
