@@ -14,6 +14,7 @@ import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBt
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
+import { editProjectsBlock, removeProjects, setProjectsBlock } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -21,6 +22,7 @@ const Menu = () => {
     const socialsBlock = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
     const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
     const experienceBlock = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
+    const projectsBlock = useSelector((state: RootState) => state.projectsBlockSlice.projectsBlock)
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
@@ -263,7 +265,81 @@ const Menu = () => {
                     })
                 }
                 <AddExpBtn onClick={() => {
-                    dispatch(setExperienceBlock({name: 'educationLine', content: {Position: '', CompanyName: '', Years: '', Descrption: ''}}))
+                    dispatch(setExperienceBlock({name: 'experienceLine', content: {Position: '', CompanyName: '', Years: '', Descrption: ''}}))
+                }}>Add Experience</AddExpBtn>
+            </ExperienceBlockWrapper>
+            <ExperienceTitle>PROJECTS</ExperienceTitle>
+            <ExperienceBlockWrapper>
+                {
+                    projectsBlock && projectsBlock.map((object, idx) => {
+                        return (
+                            <ExperienceBlock key={idx}>
+                                <TextField id="outlined-basic" value={object.content.Description} label='Description' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            Description: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.Customer} label='Customer' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            Customer: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.InvolvementDuration} label='Involvement duration' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            InvolvementDuration: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.ProjectRole} label='Project role' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            ProjectRole: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.Responsibilities} label='Responsibilities' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            Responsibilities: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.ProjectTeamSize} label='Project team size' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            ProjectTeamSize: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                <TextField id="outlined-basic" value={object.content.ToolsAndTechnologies} label='Tools & technologies' onChange={(e) => {
+                                    dispatch(editProjectsBlock({
+                                        idx: idx,
+                                        content: {
+                                            ToolsAndTechnologies: e.target.value
+                                        }
+                                    }))
+                                }} variant="outlined" />
+                                
+                            <RemoveExpBtn onClick={() => {
+                                dispatch(removeProjects(idx))
+                            }}><IoMdRemoveCircle /></RemoveExpBtn>
+                            </ExperienceBlock>
+                        )
+                    })
+                }
+                <AddExpBtn onClick={() => {
+                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: '', ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
                 }}>Add Experience</AddExpBtn>
             </ExperienceBlockWrapper>
         </MenuSection>
