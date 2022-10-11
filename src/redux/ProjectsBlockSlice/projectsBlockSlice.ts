@@ -10,7 +10,7 @@ type ProjectsContent = {
   content: {
       Description?: string
       Customer?: string,
-      InvolvementDuration?: {from: '', to: ''}
+      InvolvementDuration?: {from: string, to: string}
       ProjectRole?: string,
       Responsibilities?: Array<ResponsibilityType> | [],
       ProjectTeamSize?: string,
@@ -107,11 +107,19 @@ export const projectsBlockSlice = createSlice({
             return undefined
           })
       }
-    }, 
+    },
+    setDate: (state, action) => {
+      const idx = action.payload.idx
+      const payload = action.payload.payload
+
+      if (state.projectsBlock && state.projectsBlock[idx]) {
+        state.projectsBlock[idx].content.InvolvementDuration = {...state.projectsBlock[idx].content.InvolvementDuration, ...payload}
+      }
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setProjectsBlock, removeProjects, editProjectsBlock, setResponsibility, editResponsibility, removeResponsibility } = projectsBlockSlice.actions
+export const { setProjectsBlock, removeProjects, editProjectsBlock, setResponsibility, editResponsibility, removeResponsibility, setDate } = projectsBlockSlice.actions
 
 export default projectsBlockSlice.reducer

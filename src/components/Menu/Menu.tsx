@@ -15,7 +15,7 @@ import * as S from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
-import { editProjectsBlock, editResponsibility, removeProjects, removeResponsibility, setProjectsBlock, setResponsibility } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
+import { editProjectsBlock, editResponsibility, removeProjects, removeResponsibility, setDate, setProjectsBlock, setResponsibility } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -333,11 +333,11 @@ const Menu = () => {
                                         <div style={{display: 'flex', width: '60%', justifyContent: 'space-between'}}>
                                             <div>
                                                 From:
-                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => console.log(e.target.value)}/>
+                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => dispatch(setDate({idx: idx, payload: {from: e.target.value}}))}/>
                                             </div>
                                             <div>
                                                 To:
-                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => console.log(e.target.value)}/>
+                                                <S.ProjectInvolvementDurationDatePicker type="date" onChange={(e) => dispatch(setDate({idx: idx, payload: {to: e.target.value}}))}/>
                                             </div>
                                         </div>
                                     </S.ProjectInvolvementDurationWrapper>
@@ -381,7 +381,7 @@ const Menu = () => {
                     })
                 }
                 <S.AddProjectBtn onClick={() => {
-                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
+                    dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: {from: '', to: ''}, ProjectRole: '', Responsibilities: [], ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
                 }}>Add Project</S.AddProjectBtn>
             </S.ProjectsBlockWrapper>
         </S.MenuSection>
