@@ -10,7 +10,7 @@ import { setLastName, setName, setPosition } from '../../redux/NamePositiionSlic
 import { editSkillBlock, removeSkil, setSkillsBlock } from '../../redux/SkillsBlockSlice/skillsBlockSlice';
 import { editSocial, removeSocial, setSocial } from '../../redux/SocialBlocksSlice/socialBlocksSlice';
 import { RootState } from '../../redux/store';
-import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
+import { AboutYourselfBlock, AboutYourselfTextArea, AboutYourselfTitle, AddEduBtn, AddExpBtn, AddLanguagesBtn, AddProjectBtn, AddSkillsBtn, AddSocialBtn, EducationBlock, EducationBlockWrapper, EducationTitle, ExperienceBlock, ExperienceBlockWrapper, ExperienceTextArea, ExperienceTextFieldsWrapper, ExperienceTitle, Image, ImageBlock, InformationBlock, InformationTitle, InputImage, LanguagesBlock, LanguagesBlockWrapper, LanguagesTitle, LibrariesBlock, LibrariesBlockWrapper, LibrariesTitle, MenuSection, NameAndPositionBlock, NameAndPositionTitle, ProjectsBlock, ProjectsBlockWrapper, ProjectsTitle, RemoveEduBtn, RemoveExpBtn, RemoveLibrariesBtn, RemoveProjectBtn, RemoveSkillsBtn, RemoveSocialBtn, SkillsBlock, SkillsBlockWrapper, SkillsTitle, SocialBlock, SocialFormWrapper, SocialTitle, TextFieldLanguageContainer, TextFieldLibrariesContainer, TextFieldSkillsContainer, TextFieldSocialContainer } from './styles'
 import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
@@ -268,12 +268,12 @@ const Menu = () => {
                     dispatch(setExperienceBlock({name: 'experienceLine', content: {Position: '', CompanyName: '', Years: '', Descrption: ''}}))
                 }}>Add Experience</AddExpBtn>
             </ExperienceBlockWrapper>
-            <ExperienceTitle>PROJECTS</ExperienceTitle>
-            <ExperienceBlockWrapper>
+            <ProjectsTitle>PROJECTS</ProjectsTitle>
+            <ProjectsBlockWrapper>
                 {
                     projectsBlock && projectsBlock.map((object, idx) => {
                         return (
-                            <ExperienceBlock key={idx}>
+                            <ProjectsBlock key={idx}>
                                 <TextField id="outlined-basic" value={object.content.Description} label='Description' onChange={(e) => {
                                     dispatch(editProjectsBlock({
                                         idx: idx,
@@ -331,17 +331,17 @@ const Menu = () => {
                                     }))
                                 }} variant="outlined" />
                                 
-                            <RemoveExpBtn onClick={() => {
+                            <RemoveProjectBtn onClick={() => {
                                 dispatch(removeProjects(idx))
-                            }}><IoMdRemoveCircle /></RemoveExpBtn>
-                            </ExperienceBlock>
+                            }}><IoMdRemoveCircle /></RemoveProjectBtn>
+                            </ProjectsBlock>
                         )
                     })
                 }
-                <AddExpBtn onClick={() => {
+                <AddProjectBtn onClick={() => {
                     dispatch(setProjectsBlock({name: 'projectsLine', content: {Description: '', Customer: '', InvolvementDuration: '', ProjectRole: '', Responsibilities: '', ProjectTeamSize: '', ToolsAndTechnologies: ''}}))
-                }}>Add Experience</AddExpBtn>
-            </ExperienceBlockWrapper>
+                }}>Add Experience</AddProjectBtn>
+            </ProjectsBlockWrapper>
         </MenuSection>
     )
 }
