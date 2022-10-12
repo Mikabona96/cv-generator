@@ -15,11 +15,13 @@ import userImg from './user.png';
 import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
 import { editProjectsBlock, editResponsibility, editTechnologies, removeProjects, removeResponsibility, removeTechnologies, setDate, setProjectsBlock, setResponsibility, setTechnologies } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
+import { setInfo } from '../../redux/AboutYourselfBlockSlice/aboutYourselfBlockSlice';
 
 const Menu = () => {
     const [socialValue, setSocialValue] = useState('Github')
     const image = useSelector((state: RootState) => state.image.image)
     const socialsBlock = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
+    const aboutYourselfInfo = useSelector((state: RootState) => state.aboutYourselfBlockSlice.info)
     const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
     const experienceBlock = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
     const projectsBlock = useSelector((state: RootState) => state.projectsBlockSlice.projectsBlock)
@@ -34,7 +36,7 @@ const Menu = () => {
         <S.MenuSection>
             <S.ImageBlock>
                 <S.Image src={image !== '' ? image : userImg} alt='Image' />
-                <S.InputImage accept="image/png, image/jpeg" onChange={(event) => {
+                <S.InputImage accept="image/*" onChange={(event) => {
                     if (event.target.files !== null) {
                         dispatch(setImage(URL.createObjectURL(event.target.files[0])))
                     }
@@ -108,7 +110,9 @@ const Menu = () => {
             </S.SocialBlock>
             <S.AboutYourselfTitle>ABOUT YOURSELF</S.AboutYourselfTitle>
             <S.AboutYourselfBlock>
-                <S.AboutYourselfTextArea />
+                <S.AboutYourselfTextArea placeholder='About yourself' value={aboutYourselfInfo} onChange={(e) => {
+                    dispatch(setInfo(e.target.value))
+                }}/>
             </S.AboutYourselfBlock>
             <S.EducationTitle>EDUCATION</S.EducationTitle>
             <S.EducationBlockWrapper>
@@ -199,7 +203,7 @@ const Menu = () => {
                     {
                         languagesBlock && languagesBlock.map((language, idx: number) => {
                             return (
-                                <S.TextFieldLanguageContainer>
+                                <S.TextFieldLanguageContainer key={language.name}>
                                     <TextField key={idx} id="outlined-basic" value={language.value ? language.value : ''} onChange={(e) => {
                                         dispatch(editLanguagesBlock({value: e.target.value, idx: idx}))
                                     }} label={`Your language №${idx + 1}`} variant="outlined" />
@@ -322,14 +326,6 @@ const Menu = () => {
                                     </S.ProjectRoleWrapper>
                                     <S.ProjectInvolvementDurationWrapper>
                                         <S.ProjectsIvolvementDurationTitle>IVOLVEMENT DURATIION</S.ProjectsIvolvementDurationTitle>
-                                        {/* <TextField id="outlined-basic" label="Project team size" value={object.content.ProjectTeamSize} onChange={(e) => {
-                                            dispatch(editProjectsBlock({
-                                                idx: idx,
-                                                content: {
-                                                    ProjectTeamSize: e.target.value
-                                                }
-                                            }))
-                                        }} variant="outlined" /> */}
                                         <div style={{display: 'flex', width: '60%', justifyContent: 'space-between'}}>
                                             <div>
                                                 From:

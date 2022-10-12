@@ -9,7 +9,7 @@ import librariesBlock from './LibrariesBlockSlice/librariesBlockSlice'
 import languagesBlock from './LanguagesBlockSlice/languagesBlockSlice'
 import experienceBlockSlice from './ExperienceBlockSlice/experienceBlockSlice'
 import projectsBlockSlice from './ProjectsBlockSlice/projectsBlockSlice'
-
+import aboutYourselfBlockSlice from './AboutYourselfBlockSlice/aboutYourselfBlockSlice'
 export const store = configureStore({
   reducer: {
     image,
@@ -21,7 +21,8 @@ export const store = configureStore({
     librariesBlock,
     languagesBlock,
     experienceBlockSlice,
-    projectsBlockSlice
+    projectsBlockSlice,
+    aboutYourselfBlockSlice
   },
 })
 

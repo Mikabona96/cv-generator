@@ -17,12 +17,6 @@ export const skillsBlockSlice = createSlice({
   initialState,
   reducers: {
     setSocial: (state, action) => {
-        // if (state.skillsBlock === null) {
-        //     state.skillsBlock = [action.payload]
-        // } else {
-
-        //     state.skillsBlock = [...state.skillsBlock, action.payload]
-        // }
         const payload = {...action.payload, name: `${action.payload.name}`}
         if (state.socialsBlock === null) {
             state.socialsBlock = [payload]
