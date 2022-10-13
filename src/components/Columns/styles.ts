@@ -6,7 +6,7 @@ export const LeftSide = styled.div`
 
     display: flex;
     flex-direction: column;
-
+    height: fit-content;
     background: rgb(241,242,245);
     background: radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%);
     /* padding-bottom: 69px; */
