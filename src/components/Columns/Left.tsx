@@ -13,6 +13,10 @@ const Left = () => {
   const Information = useSelector((state: RootState) => state.info.info)
   const Social = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
   const Profile = useSelector((state: RootState) => state.aboutYourselfBlockSlice.info)
+  const Education = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
+  const Skills = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
+  const Libraries = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
+  const Languages = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
   return (
     <LeftSide>
       {
@@ -30,7 +34,8 @@ const Left = () => {
       }
       {
         Information.email === '' && Information.adress === '' && Information.phone === '' ? null 
-        : <InfoSection>
+        : 
+        <InfoSection>
         {
           Information.adress ? <IconSpan><GoLocation /><TextSpan>{Information.adress}</TextSpan></IconSpan> : null
         }
@@ -51,21 +56,21 @@ const Left = () => {
               Social && Social.map((social, idx) => {
                 switch (social.name) {
                   case 'Github':
-                    return <IconSpan><BsGithub /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><BsGithub /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'LinkedIn': 
-                    return <IconSpan><BsLinkedin /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><BsLinkedin /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'Telegram':
-                    return <IconSpan><BsTelegram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><BsTelegram /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'Facebook':
-                    return <IconSpan><FaFacebookSquare /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><FaFacebookSquare /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'Instagram':
-                    return <IconSpan><AiOutlineInstagram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><AiOutlineInstagram /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'Viber':
-                    return <IconSpan><FaViber /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><FaViber /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'Skype':
-                    return <IconSpan><BsSkype /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><BsSkype /><TextSpan>{social.value}</TextSpan></IconSpan>
                   case 'WhatsApp':
-                    return <IconSpan><BsWhatsapp /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <IconSpan key={social.value}><BsWhatsapp /><TextSpan>{social.value}</TextSpan></IconSpan>
                   default:
                     return null
                 }
@@ -85,51 +90,90 @@ const Left = () => {
         </>
         : null
       }
-      <EducationTitle>EDUCATION</EducationTitle>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>MASTER OF DESIGN</EducationPosition>
-        <EducationUniversity>University of Studies</EducationUniversity>
-        <EducationYears>2010 - 2015</EducationYears>
-      </Educations>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>WEB DEVELOPER</EducationPosition>
-        <EducationUniversity>Institute Studies</EducationUniversity>
-        <EducationYears>2016 - 2019</EducationYears>
-      </Educations>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>MASTER IN UI/UX</EducationPosition>
-        <EducationUniversity>Institute Studies</EducationUniversity>
-        <EducationYears>2019 - 2021</EducationYears>
-      </Educations>
-      <SkillsTitle>SKILLS</SkillsTitle>
-      <SkillsSection>
-        <SkillsLi>Html</SkillsLi>
-        <SkillsLi>CSS</SkillsLi>
-        <SkillsLi>JavaScript</SkillsLi>
-        <SkillsLi>TypeScript</SkillsLi>
-        <SkillsLi>styled-components</SkillsLi>
-        <SkillsLi>Material Ui</SkillsLi>
-        <SkillsLi>React</SkillsLi>
-        <SkillsLi>Redux</SkillsLi>
-      </SkillsSection>
-      <LibrariesTitle>LIBRARIES</LibrariesTitle>
-      <LibrariesSection>
-        <LibrariesLi>_Lodash</LibrariesLi>
-        <LibrariesLi>Material ui</LibrariesLi>
-        <LibrariesLi>Moment js</LibrariesLi>
-      </LibrariesSection>
-      <LanguagesTitle>LANGUAGES</LanguagesTitle>
-      <LanguageSection>
-        <LanguagesLi>English</LanguagesLi>
-        <LanguagesLi>Русский</LanguagesLi>
-        <LanguagesLi>Украйинська</LanguagesLi>
-      </LanguageSection>
+      {
+        Education && Education.length > 0 ?
+        <>
+          <EducationTitle>EDUCATION</EducationTitle>
+          {
+            Education.map((education, idx) => {
+              if (Education.length === 1) {
+                return (
+                  <Educations key={education.name}>
+                    <EducationPosition>{education.content.Specialization}</EducationPosition>
+                    <EducationUniversity>{education.content.Institution}</EducationUniversity>
+                    <EducationYears>{education.content.Years}</EducationYears>
+                  </Educations>
+                )
+              }
+              if (idx === Education.length - 1) {
+                return (
+                  <Educations key={education.name}>
+                    <EducationRonded />
+                    <EducationPosition>{education.content.Specialization}</EducationPosition>
+                    <EducationUniversity>{education.content.Institution}</EducationUniversity>
+                    <EducationYears>{education.content.Years}</EducationYears>
+                  </Educations>
+                )
+              }
+              return (
+                <Educations key={education.name}>
+                  <EducationRonded />
+                  <EducationLine />
+                  <EducationPosition>{education.content.Specialization}</EducationPosition>
+                  <EducationUniversity>{education.content.Institution}</EducationUniversity>
+                  <EducationYears>{education.content.Years}</EducationYears>
+                </Educations>
+              )
+            })
+          }
+        </>
+        : null
+      }
+      {
+        Skills && Skills.length > 0 ?
+        <>
+          <SkillsTitle>SKILLS</SkillsTitle>
+          <SkillsSection>
+            {
+              Skills.map((skill, idx) => {
+                return (
+                  <SkillsLi key={skill.name}>{skill.value}</SkillsLi>
+                )
+              })
+            }
+          </SkillsSection>
+        </> : null
+      }
+      {
+        Libraries && Libraries.length > 0 ?
+        <>
+          <LibrariesTitle>LIBRARIES</LibrariesTitle>
+          <LibrariesSection>
+            {
+              Libraries.map((library) => {
+                return (
+                  <LibrariesLi key={library.name}>{library.value}</LibrariesLi>
+                )
+              })
+            }
+          </LibrariesSection>
+        </> : null
+      }
+      {
+        Languages && Languages.length > 0 ?
+        <>
+          <LanguagesTitle>LANGUAGES</LanguagesTitle>
+          <LanguageSection>
+            {
+              Languages.map(language => {
+                return(
+                  <LanguagesLi key={language.name}>{language.value}</LanguagesLi>
+                )
+              })
+            }
+          </LanguageSection>
+        </> : null
+      }
     </LeftSide>
   )
 }

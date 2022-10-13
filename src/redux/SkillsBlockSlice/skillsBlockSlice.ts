@@ -15,16 +15,10 @@ const initialState: SkillsBlockState = {
 }
 
 export const skillsBlockSlice = createSlice({
-  name: 'socialsBlock',
+  name: 'skillsBlock',
   initialState,
   reducers: {
     setSkillsBlock: (state, action) => {
-        // if (state.skillsBlock === null) {
-        //     state.skillsBlock = [action.payload]
-        // } else {
-
-        //     state.skillsBlock = [...state.skillsBlock, action.payload]
-        // }
         const payload = {...action.payload, name: `${action.payload.name}${state.stateSkillsBlockCounter}`}
         if (state.skillsBlock === null) {
             state.skillsBlock = [payload]

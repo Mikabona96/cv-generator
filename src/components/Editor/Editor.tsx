@@ -20,6 +20,8 @@ import { setInfo } from '../../redux/AboutYourselfBlockSlice/aboutYourselfBlockS
 const Editor = () => {
     const [socialValue, setSocialValue] = useState('Github')
     const image = useSelector((state: RootState) => state.image.image)
+    const NameAndPosition = useSelector((state: RootState) => state.namePosition)
+    const information = useSelector((state: RootState) => state.info.info)
     const socialsBlock = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
     const aboutYourselfInfo = useSelector((state: RootState) => state.aboutYourselfBlockSlice.info)
     const educationBlock = useSelector((state: RootState) => state.educationBlockSlice.educationBlock)
@@ -44,25 +46,25 @@ const Editor = () => {
             </S.ImageBlock>
             <S.NameAndPositionTitle>NAME AND POSITION</S.NameAndPositionTitle>
             <S.NameAndPositionBlock>
-                <TextField id="outlined-basic" label="Your Name" onChange={(e) => {
+                <TextField id="outlined-basic" value={NameAndPosition.name} label="Your Name" onChange={(e) => {
                     dispatch(setName(e.target.value))
                 }} variant="outlined" />
-                <TextField id="outlined-basic" label="Your LastName" onChange={(e) => {
+                <TextField id="outlined-basic" value={NameAndPosition.lastName} label="Your Last Name" onChange={(e) => {
                     dispatch(setLastName(e.target.value))
                 }} variant="outlined" />
-                <TextField id="outlined-basic" label="Your Position" onChange={(e) => {
+                <TextField id="outlined-basic" value={NameAndPosition.position} label="Your Position" onChange={(e) => {
                     dispatch(setPosition(e.target.value))
                 }} variant="outlined" />
             </S.NameAndPositionBlock>
             <S.InformationTitle>INFORMATION</S.InformationTitle>
             <S.InformationBlock>
-                <TextField id="outlined-basic" label="Your Adress: str. № 123. city, country" onChange={(e) => {
+                <TextField id="outlined-basic" value={information.adress} label="Your Adress: str. № 123. city, country" onChange={(e) => {
                     dispatch(setAdress(e.target.value))
                 }} variant="outlined" />
-                <TextField id="outlined-basic" label="Your E-mail" onChange={(e) => {
+                <TextField id="outlined-basic" value={information.email} label="Your E-mail" onChange={(e) => {
                     dispatch(setEmail(e.target.value))
                 }} variant="outlined" />
-                <TextField id="outlined-basic" label="Your phone number" onChange={(e) => {
+                <TextField id="outlined-basic" value={information.phone} label="Your phone number" onChange={(e) => {
                     dispatch(setPhone(e.target.value))
                 }} variant="outlined" />
             </S.InformationBlock>
