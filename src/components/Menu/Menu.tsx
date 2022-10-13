@@ -1,6 +1,6 @@
 import React, {FC} from 'react'
 import * as S from './styles'
-import {FiEdit} from 'react-icons/fi'
+import {IoIosLaptop} from 'react-icons/io'
 import {VscOpenPreview, VscPreview} from 'react-icons/vsc'
 import { Link } from 'react-router-dom'
 type PropsType = {
@@ -11,7 +11,7 @@ const Menu: FC<PropsType> = ({openMenu}) => {
     <S.MenuWrapper openMenu={openMenu}>
         <Link to="/" style={{textDecoration: 'none'}}>
             <S.Block>
-                <S.Icon><FiEdit /></S.Icon>
+                <S.Icon><IoIosLaptop /></S.Icon>
                 <S.Text>Editor</S.Text>
             </S.Block>
         </Link>

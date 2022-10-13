@@ -6,6 +6,7 @@ import socialBlockSlice from './SocialBlocksSlice/socialBlocksSlice'
 import educationBlockSlice from './EducationBlockSlice/educationBlockSlice'
 import skillsBlock from './SkillsBlockSlice/skillsBlockSlice'
 import librariesBlock from './LibrariesBlockSlice/librariesBlockSlice'
+import interestsBlockSlice from './InterestsBlock/interestsBlockSlice'
 import languagesBlock from './LanguagesBlockSlice/languagesBlockSlice'
 import experienceBlockSlice from './ExperienceBlockSlice/experienceBlockSlice'
 import projectsBlockSlice from './ProjectsBlockSlice/projectsBlockSlice'
@@ -22,7 +23,8 @@ export const store = configureStore({
     languagesBlock,
     experienceBlockSlice,
     projectsBlockSlice,
-    aboutYourselfBlockSlice
+    aboutYourselfBlockSlice,
+    interestsBlockSlice
   },
 })
 

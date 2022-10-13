@@ -1,165 +1,160 @@
 import React from 'react'
-import { ExperienceCompany, ExperienceContainer, ExperienceDescription, ExperienceLine, ExperiencePosition, ExperienceRounder, ExperienceTitle, ExperienceWrapper, ExperienceYears, ExperienceYearsContainer, InterestsLi, InterestsSection, InterestsTitle, ProjectColumnWrapper, ProjectContainer, ProjectDescription, ProjectInfoLeft, ProjectsTitle, RightSide } from './styles'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import * as S from './styles'
 
 const Right = () => {
+  const Experience = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
+  const Projects = useSelector((state: RootState) => state.projectsBlockSlice.projectsBlock)
+  const Interests = useSelector((state: RootState) => state.interestsBlockSlice.interestsBlock)
   return (
-    <RightSide>
+    <S.RightSide>
       {/* ====================EXPERIENCE========================= */}
-      <ExperienceTitle>EXPERIENCE</ExperienceTitle>
-      <ExperienceContainer>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
-            Work in this company dedicating the best responsibility in the area that corresponds, 
-            delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
-            Work in this company dedicating the best responsibility in the area that corresponds, 
-            delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
-            Work in this company dedicating the best responsibility in the area that corresponds, 
-            delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-      </ExperienceContainer>
+      {
+        Experience && Experience.length > 0 ?
+        <>
+          <S.ExperienceTitle>EXPERIENCE</S.ExperienceTitle>
+          <S.ExperienceContainer>
+            {
+              Experience.map((experience, idx) => {
+                if (Experience.length === 1) {
+                  return (
+                    <S.ExperienceWrapper key={experience.name}>
+                      <S.ExperiencePosition>{experience.content.Position}</S.ExperiencePosition>
+                      <S.ExperienceYearsContainer>
+                        <S.ExperienceYears>{experience.content.Years}</S.ExperienceYears> | <S.ExperienceCompany>{experience.content.CompanyName}</S.ExperienceCompany>
+                      </S.ExperienceYearsContainer>
+                      <S.ExperienceDescription>
+                        {experience.content.Description}
+                      </S.ExperienceDescription>
+                  </S.ExperienceWrapper>
+                  )
+                }
+                if (idx === Experience.length - 1) {
+                  return (
+                    <S.ExperienceWrapper key={experience.name}>
+                      <S.ExperienceRounder />
+                      <S.ExperiencePosition>{experience.content.Position}</S.ExperiencePosition>
+                      <S.ExperienceYearsContainer>
+                        <S.ExperienceYears>{experience.content.Years}</S.ExperienceYears> | <S.ExperienceCompany>{experience.content.CompanyName}</S.ExperienceCompany>
+                      </S.ExperienceYearsContainer>
+                      <S.ExperienceDescription>
+                        {experience.content.Description}
+                      </S.ExperienceDescription>
+                    </S.ExperienceWrapper>
+                  )
+                }
+                return (
+                  <S.ExperienceWrapper key={experience.name}>
+                    <S.ExperienceRounder />
+                    <S.ExperienceLine />
+                    <S.ExperiencePosition>{experience.content.Position}</S.ExperiencePosition>
+                    <S.ExperienceYearsContainer>
+                      <S.ExperienceYears>{experience.content.Years}</S.ExperienceYears> | <S.ExperienceCompany>{experience.content.CompanyName}</S.ExperienceCompany>
+                    </S.ExperienceYearsContainer>
+                    <S.ExperienceDescription>
+                      {experience.content.Description}
+                    </S.ExperienceDescription>
+                  </S.ExperienceWrapper>
+                )
+              })
+            }
+          </S.ExperienceContainer>
+        </> : null
+      }
 
       {/*=============== Projects ============== */}
+      {
+        Projects && Projects.length > 0 ?
+        <>
 
-      <ProjectsTitle>PROJECTS</ProjectsTitle>
-      <ProjectContainer>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Description:</ProjectInfoLeft>
-          <ProjectDescription>
-            SPA for education children, where children can learn basic english words , and choose level from A0/A1 to A2.
-            On this project I implemented virtual keyboard and also main modules for optimization data.
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Customer:</ProjectInfoLeft>
-          <ProjectDescription>
-            Ukraine
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Involvement Duration:</ProjectInfoLeft>
-          <ProjectDescription>
-            9 months
-            (April 2021-December 2021)
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Role:</ProjectInfoLeft>
-          <ProjectDescription>
-            Front-end developer
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Responsibilities:</ProjectInfoLeft>
-          <ProjectDescription>
-          - development of UI interface, 
-          - adaptive layout, 
-          - task managment,
-          - implementing new features,
-          - working with API,
-          - optimization,
-          - communication with a client
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Team Size:</ProjectInfoLeft>
-          <ProjectDescription>
-          2 members
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Tools & Technologies:</ProjectInfoLeft>
-          <ProjectDescription>
-          TypeScript, React, Redux, Styled Components, Git, Figma
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-      </ProjectContainer>
-      <ProjectContainer>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Description:</ProjectInfoLeft>
-          <ProjectDescription>
-            SPA for education children, where children can learn basic english words , and choose level from A0/A1 to A2.
-            On this project I implemented virtual keyboard and also main modules for optimization data.
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Customer:</ProjectInfoLeft>
-          <ProjectDescription>
-            Ukraine
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Involvement Duration:</ProjectInfoLeft>
-          <ProjectDescription>
-            9 months
-            (April 2021-December 2021)
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Role:</ProjectInfoLeft>
-          <ProjectDescription>
-            Front-end developer
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Responsibilities:</ProjectInfoLeft>
-          <ProjectDescription>
-          - development of UI interface, 
-          - adaptive layout, 
-          - task managment,
-          - implementing new features,
-          - working with API,
-          - optimization,
-          - communication with a client
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Team Size:</ProjectInfoLeft>
-          <ProjectDescription>
-          2 members
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Tools & Technologies:</ProjectInfoLeft>
-          <ProjectDescription>
-          TypeScript, React, Redux, Styled Components, Git, Figma
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-      </ProjectContainer>
-      <InterestsTitle>INTERESTS</InterestsTitle>
-      <InterestsSection>
-        <InterestsLi>Music</InterestsLi>
-        <InterestsLi>Reading</InterestsLi>
-        <InterestsLi>Sport</InterestsLi>
-        <InterestsLi>Music</InterestsLi>
-      </InterestsSection>
-    </RightSide>
+          <S.ProjectsTitle>PROJECTS</S.ProjectsTitle>
+          {
+            Projects.map(project => {
+              return (
+                <S.ProjectContainer key={project.name}>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Description:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                     {project.content.Description}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Customer:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                      {project.content.Customer}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Involvement Duration:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                    {project.content.InvolvementDuration?.from} - {project.content.InvolvementDuration?.to}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Project Role:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                    {project.content.ProjectRole}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Responsibilities:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                    {project.content.Responsibilities?.map((responsibility, idx) => {
+                      if (project.content.Responsibilities && project.content.Responsibilities.length -1 === idx) {
+                        return (
+                        <span key={responsibility.name}>- {responsibility.value}</span>
+                      )
+                      }
+                      return (
+                        <span key={responsibility.name}>- {responsibility.value},</span>
+                      )
+                    })}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Project Team Size:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                    {project.content.ProjectTeamSize}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                  <S.ProjectColumnWrapper>
+                    <S.ProjectInfoLeft>Tools & Technologies:</S.ProjectInfoLeft>
+                    <S.ProjectDescription>
+                    {project.content.ToolsAndTechnologies?.map((tool, idx) => {
+                      if (project.content.ToolsAndTechnologies && project.content.ToolsAndTechnologies.length -1 === idx) {
+                        return (
+                          <span key={tool.name}>{tool.value}</span>
+                        )
+                      }
+                      return (
+                        <span key={tool.name}>{tool.value},</span>
+                      )
+                    })}
+                    </S.ProjectDescription>
+                  </S.ProjectColumnWrapper>
+                </S.ProjectContainer>
+              )
+            })
+          }
+        </> : null
+      }
+      {
+        Interests && Interests.length > 0 ?
+        <>
+          <S.InterestsTitle>INTERESTS</S.InterestsTitle>
+          <S.InterestsSection>
+            {
+              Interests.map(interest => {
+                return (
+                  <S.InterestsLi key={interest.name}>{interest.value}</S.InterestsLi>
+                )
+              })
+            }
+          </S.InterestsSection>
+        </> : null
+      }
+    </S.RightSide>
   )
 }
 

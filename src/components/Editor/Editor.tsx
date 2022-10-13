@@ -16,6 +16,7 @@ import {IoMdRemoveCircle} from 'react-icons/io'
 import { editExperienceBlock, removeExperience, setExperienceBlock } from '../../redux/ExperienceBlockSlice/experienceBlockSlice';
 import { editProjectsBlock, editResponsibility, editTechnologies, removeProjects, removeResponsibility, removeTechnologies, setDate, setProjectsBlock, setResponsibility, setTechnologies } from '../../redux/ProjectsBlockSlice/projectsBlockSlice';
 import { setInfo } from '../../redux/AboutYourselfBlockSlice/aboutYourselfBlockSlice';
+import { editInterestsBlock, removeInterest, setInterestsBlock } from '../../redux/InterestsBlock/interestsBlockSlice';
 
 const Editor = () => {
     const [socialValue, setSocialValue] = useState('Github')
@@ -28,6 +29,7 @@ const Editor = () => {
     const experienceBlock = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
     const projectsBlock = useSelector((state: RootState) => state.projectsBlockSlice.projectsBlock)
     const skillsBlock = useSelector((state: RootState) => state.skillsBlock.skillsBlock)
+    const interestsBlock = useSelector((state: RootState) => state.interestsBlockSlice.interestsBlock)
     const librariesBlock = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
     const languagesBlock = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
     const dispatch = useDispatch<any>()
@@ -221,6 +223,27 @@ const Editor = () => {
                     dispatch(setLanguagesBlock({name: 'language', value:''}))
                 }}>Add Languages</S.AddLanguagesBtn>
             </S.LanguagesBlockWrapper>
+            <S.SkillsTitle>INTERESTS</S.SkillsTitle>
+            <S.SkillsBlockWrapper>
+                <S.SkillsBlock>
+                    {
+                       interestsBlock && interestsBlock.map((interest, idx: number) => {
+                            return (
+                                <S.TextFieldSkillsContainer key={idx}>
+                                    <TextField id="outlined-basic" value={interest.value ? interest.value : ''} label={`Your interest №${idx + 1}`} variant="outlined"  onChange={(e) => {
+                                        dispatch(editInterestsBlock({value: e.target.value, idx: idx}))
+                                    }}/><S.RemoveSkillsBtn onClick={() => {
+                                        dispatch(removeInterest(idx))
+                                    }}><IoMdRemoveCircle /></S.RemoveSkillsBtn>
+                                </S.TextFieldSkillsContainer>
+                            )
+                        })
+                    }
+                </S.SkillsBlock>
+                <S.AddSkillsBtn onClick={() => {
+                        dispatch(setInterestsBlock({name: 'interest', value:''}))
+                    }}>Add Interests</S.AddSkillsBtn>
+            </S.SkillsBlockWrapper>
             <S.ExperienceTitle>EXPERIENCE</S.ExperienceTitle>
             <S.ExperienceBlockWrapper>
                 {

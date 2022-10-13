@@ -87,7 +87,7 @@ export const ProfileTitle = styled(SocialTitle)`
 export const ProfileDescription = styled.p`
     padding-left: 29px;
     margin-top: 1.6rem;
-    padding-right: 10px;
+    padding-right: 15px;
 `
 
 // =========== Education Section ================

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, LibrariesLi, LibrariesSection, LibrariesTitle, Name, NamePositionSection, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
+import * as S from './styles'
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookSquare, FaViber } from 'react-icons/fa';
@@ -18,111 +18,111 @@ const Left = () => {
   const Libraries = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
   const Languages = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
   return (
-    <LeftSide>
+    <S.LeftSide>
       {
-        Image !== '' ? <TopSection>
-                  <TopSectionImg src={Image} alt="" />
-                </TopSection>
+        Image !== '' ? <S.TopSection>
+                  <S.TopSectionImg src={Image} alt="" />
+                </S.TopSection>
               : null
       }
       {
         NameAndPosition.name === '' && NameAndPosition.lastName === '' && NameAndPosition.position === '' ? null 
-        : <NamePositionSection>
-            <Name>{NameAndPosition.name} <b>{NameAndPosition.lastName}</b></Name>
-            <Developer>{NameAndPosition.position}</Developer>
-          </NamePositionSection>
+        : <S.NamePositionSection>
+            <S.Name>{NameAndPosition.name} <b>{NameAndPosition.lastName}</b></S.Name>
+            <S.Developer>{NameAndPosition.position}</S.Developer>
+          </S.NamePositionSection>
       }
       {
         Information.email === '' && Information.adress === '' && Information.phone === '' ? null 
         : 
-        <InfoSection>
+        <S.InfoSection>
         {
-          Information.adress ? <IconSpan><GoLocation /><TextSpan>{Information.adress}</TextSpan></IconSpan> : null
+          Information.adress ? <S.IconSpan><GoLocation /><S.TextSpan>{Information.adress}</S.TextSpan></S.IconSpan> : null
         }
         {
-          Information.email ? <IconSpan><AiOutlineMail /><TextSpan>{Information.email}</TextSpan></IconSpan> : null
+          Information.email ? <S.IconSpan><AiOutlineMail /><S.TextSpan>{Information.email}</S.TextSpan></S.IconSpan> : null
         }
         {
-          Information.phone ? <IconSpan><BsTelephone /><TextSpan>{Information.phone}</TextSpan></IconSpan> : null
+          Information.phone ? <S.IconSpan><BsTelephone /><S.TextSpan>{Information.phone}</S.TextSpan></S.IconSpan> : null
         }
-      </InfoSection>
+      </S.InfoSection>
       }
       {
         Social && Social.length > 0 ? 
         <>
-          <SocialTitle>SOCIAL</SocialTitle>
-          <SocialSection>
+          <S.SocialTitle>SOCIAL</S.SocialTitle>
+          <S.SocialSection>
             {
               Social && Social.map((social, idx) => {
                 switch (social.name) {
                   case 'Github':
-                    return <IconSpan key={social.value}><BsGithub /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><BsGithub /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'LinkedIn': 
-                    return <IconSpan key={social.value}><BsLinkedin /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><BsLinkedin /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'Telegram':
-                    return <IconSpan key={social.value}><BsTelegram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><BsTelegram /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'Facebook':
-                    return <IconSpan key={social.value}><FaFacebookSquare /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><FaFacebookSquare /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'Instagram':
-                    return <IconSpan key={social.value}><AiOutlineInstagram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><AiOutlineInstagram /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'Viber':
-                    return <IconSpan key={social.value}><FaViber /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><FaViber /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'Skype':
-                    return <IconSpan key={social.value}><BsSkype /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><BsSkype /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   case 'WhatsApp':
-                    return <IconSpan key={social.value}><BsWhatsapp /><TextSpan>{social.value}</TextSpan></IconSpan>
+                    return <S.IconSpan key={social.value}><BsWhatsapp /><S.TextSpan>{social.value}</S.TextSpan></S.IconSpan>
                   default:
                     return null
                 }
               })
             }
-          </SocialSection>
+          </S.SocialSection>
         </>
         : null
       }
       {
         Profile !== '' ? 
         <>
-          <ProfileTitle>PROFILE</ProfileTitle>
-          <ProfileDescription>
+          <S.ProfileTitle>PROFILE</S.ProfileTitle>
+          <S.ProfileDescription>
             {Profile}
-          </ProfileDescription>
+          </S.ProfileDescription>
         </>
         : null
       }
       {
         Education && Education.length > 0 ?
         <>
-          <EducationTitle>EDUCATION</EducationTitle>
+          <S.EducationTitle>EDUCATION</S.EducationTitle>
           {
             Education.map((education, idx) => {
               if (Education.length === 1) {
                 return (
-                  <Educations key={education.name}>
-                    <EducationPosition>{education.content.Specialization}</EducationPosition>
-                    <EducationUniversity>{education.content.Institution}</EducationUniversity>
-                    <EducationYears>{education.content.Years}</EducationYears>
-                  </Educations>
+                  <S.Educations key={education.name}>
+                    <S.EducationPosition>{education.content.Specialization}</S.EducationPosition>
+                    <S.EducationUniversity>{education.content.Institution}</S.EducationUniversity>
+                    <S.EducationYears>{education.content.Years}</S.EducationYears>
+                  </S.Educations>
                 )
               }
               if (idx === Education.length - 1) {
                 return (
-                  <Educations key={education.name}>
-                    <EducationRonded />
-                    <EducationPosition>{education.content.Specialization}</EducationPosition>
-                    <EducationUniversity>{education.content.Institution}</EducationUniversity>
-                    <EducationYears>{education.content.Years}</EducationYears>
-                  </Educations>
+                  <S.Educations key={education.name}>
+                    <S.EducationRonded />
+                    <S.EducationPosition>{education.content.Specialization}</S.EducationPosition>
+                    <S.EducationUniversity>{education.content.Institution}</S.EducationUniversity>
+                    <S.EducationYears>{education.content.Years}</S.EducationYears>
+                  </S.Educations>
                 )
               }
               return (
-                <Educations key={education.name}>
-                  <EducationRonded />
-                  <EducationLine />
-                  <EducationPosition>{education.content.Specialization}</EducationPosition>
-                  <EducationUniversity>{education.content.Institution}</EducationUniversity>
-                  <EducationYears>{education.content.Years}</EducationYears>
-                </Educations>
+                <S.Educations key={education.name}>
+                  <S.EducationRonded />
+                  <S.EducationLine />
+                  <S.EducationPosition>{education.content.Specialization}</S.EducationPosition>
+                  <S.EducationUniversity>{education.content.Institution}</S.EducationUniversity>
+                  <S.EducationYears>{education.content.Years}</S.EducationYears>
+                </S.Educations>
               )
             })
           }
@@ -132,49 +132,49 @@ const Left = () => {
       {
         Skills && Skills.length > 0 ?
         <>
-          <SkillsTitle>SKILLS</SkillsTitle>
-          <SkillsSection>
+          <S.SkillsTitle>SKILLS</S.SkillsTitle>
+          <S.SkillsSection>
             {
               Skills.map((skill, idx) => {
                 return (
-                  <SkillsLi key={skill.name}>{skill.value}</SkillsLi>
+                  <S.SkillsLi key={skill.name}>{skill.value}</S.SkillsLi>
                 )
               })
             }
-          </SkillsSection>
+          </S.SkillsSection>
         </> : null
       }
       {
         Libraries && Libraries.length > 0 ?
         <>
-          <LibrariesTitle>LIBRARIES</LibrariesTitle>
-          <LibrariesSection>
+          <S.LibrariesTitle>LIBRARIES</S.LibrariesTitle>
+          <S.LibrariesSection>
             {
               Libraries.map((library) => {
                 return (
-                  <LibrariesLi key={library.name}>{library.value}</LibrariesLi>
+                  <S.LibrariesLi key={library.name}>{library.value}</S.LibrariesLi>
                 )
               })
             }
-          </LibrariesSection>
+          </S.LibrariesSection>
         </> : null
       }
       {
         Languages && Languages.length > 0 ?
         <>
-          <LanguagesTitle>LANGUAGES</LanguagesTitle>
-          <LanguageSection>
+          <S.LanguagesTitle>LANGUAGES</S.LanguagesTitle>
+          <S.LanguageSection>
             {
               Languages.map(language => {
                 return(
-                  <LanguagesLi key={language.name}>{language.value}</LanguagesLi>
+                  <S.LanguagesLi key={language.name}>{language.value}</S.LanguagesLi>
                 )
               })
             }
-          </LanguageSection>
+          </S.LanguageSection>
         </> : null
       }
-    </LeftSide>
+    </S.LeftSide>
   )
 }
 
