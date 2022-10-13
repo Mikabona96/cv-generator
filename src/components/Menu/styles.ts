@@ -26,6 +26,7 @@ export const Block = styled.div`
     text-align: center;
     align-items: center;
     cursor: pointer;
+    color: black;
     &:last-child {
         margin-bottom: 1rem;
     }

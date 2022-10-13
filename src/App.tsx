@@ -6,16 +6,27 @@ import {Provider} from 'react-redux';
 import { store } from './redux/store';
 import Menu from './components/Menu/Menu';
 import MenuSwitcher from './components/Menu/MenuSwitcher';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import ExampleResume from './pages/ExampleResume';
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false)
   return (
     <Provider store={store}>
       <div className="App">
-        <MenuSwitcher openMenu={openMenu} setOpenMenu={setOpenMenu} />
-        <Menu openMenu={openMenu} />
-        <Editor />
-        {/* <Resume /> */}
+        <BrowserRouter>
+          <MenuSwitcher openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <Menu openMenu={openMenu} />
+          <Routes>
+            <Route path="/" element={<Editor />} />
+            <Route path="/preview" element={<Resume />} />
+            <Route path="/example" element={<ExampleResume />} />
+          </Routes>
+        </BrowserRouter>
       </div>
     </Provider>
   );
