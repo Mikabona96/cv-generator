@@ -24,6 +24,8 @@ export const TopSection = styled.div`
     margin-top: 1.4rem;
 `
 
+export const NamePositionSection = styled(TopSection)``
+
 export const TopSectionImg = styled.img`
     border-radius: 50%;
     width: 130px;

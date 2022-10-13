@@ -1,41 +1,90 @@
 import React from 'react'
-import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, LibrariesLi, LibrariesSection, LibrariesTitle, Name, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
+import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, LibrariesLi, LibrariesSection, LibrariesTitle, Name, NamePositionSection, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookSquare, FaViber } from 'react-icons/fa';
 import { BsTelephone, BsLinkedin, BsGithub, BsTelegram, BsSkype, BsWhatsapp } from 'react-icons/bs';
-import perfil from './perfil.jpg'
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const Left = () => {
+  const Image = useSelector((state: RootState) => state.image.image)
+  const NameAndPosition = useSelector((state: RootState) => state.namePosition)
+  const Information = useSelector((state: RootState) => state.info.info)
+  const Social = useSelector((state: RootState) => state.socialBlockSlice.socialsBlock)
+  const Profile = useSelector((state: RootState) => state.aboutYourselfBlockSlice.info)
   return (
     <LeftSide>
-      <TopSection>
-        <TopSectionImg src={perfil} alt="" />
-        <Name>SMITH <b>MATTHEW</b></Name>
-        <Developer>Web developer</Developer>
-      </TopSection>
-      <InfoSection>
-        <IconSpan><GoLocation /><TextSpan>Av. Bolivar #123 Lima - Peru</TextSpan></IconSpan>
-        <IconSpan><AiOutlineMail /><TextSpan>usermail@mail.com</TextSpan></IconSpan>
-        <IconSpan><BsTelephone /><TextSpan>+38(099) 340 589 0</TextSpan></IconSpan>
+      {
+        Image !== '' ? <TopSection>
+                  <TopSectionImg src={Image} alt="" />
+                </TopSection>
+              : null
+      }
+      {
+        NameAndPosition.name === '' && NameAndPosition.lastName === '' && NameAndPosition.position === '' ? null 
+        : <NamePositionSection>
+            <Name>{NameAndPosition.name} <b>{NameAndPosition.lastName}</b></Name>
+            <Developer>{NameAndPosition.position}</Developer>
+          </NamePositionSection>
+      }
+      {
+        Information.email === '' && Information.adress === '' && Information.phone === '' ? null 
+        : <InfoSection>
+        {
+          Information.adress ? <IconSpan><GoLocation /><TextSpan>{Information.adress}</TextSpan></IconSpan> : null
+        }
+        {
+          Information.email ? <IconSpan><AiOutlineMail /><TextSpan>{Information.email}</TextSpan></IconSpan> : null
+        }
+        {
+          Information.phone ? <IconSpan><BsTelephone /><TextSpan>{Information.phone}</TextSpan></IconSpan> : null
+        }
       </InfoSection>
-      <SocialTitle>SOCIAL</SocialTitle>
-      <SocialSection>
-        <IconSpan><BsGithub /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsLinkedin /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsTelegram /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><FaFacebookSquare /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><AiOutlineInstagram /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><FaViber /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsSkype /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsWhatsapp /><TextSpan>@smithmat</TextSpan></IconSpan>
-      </SocialSection>
-      <ProfileTitle>PROFILE</ProfileTitle>
-      <ProfileDescription>
-        I am a person, responsible with their work during working hours. 
-        Finish various technical and higher studies at large universities. 
-        I have several years of experience and achievements in the labor field.
-      </ProfileDescription>
+      }
+      {
+        Social && Social.length > 0 ? 
+        <>
+          <SocialTitle>SOCIAL</SocialTitle>
+          <SocialSection>
+            {
+              Social && Social.map((social, idx) => {
+                switch (social.name) {
+                  case 'Github':
+                    return <IconSpan><BsGithub /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'LinkedIn': 
+                    return <IconSpan><BsLinkedin /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'Telegram':
+                    return <IconSpan><BsTelegram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'Facebook':
+                    return <IconSpan><FaFacebookSquare /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'Instagram':
+                    return <IconSpan><AiOutlineInstagram /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'Viber':
+                    return <IconSpan><FaViber /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'Skype':
+                    return <IconSpan><BsSkype /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  case 'WhatsApp':
+                    return <IconSpan><BsWhatsapp /><TextSpan>{social.value}</TextSpan></IconSpan>
+                  default:
+                    return null
+                }
+              })
+            }
+          </SocialSection>
+        </>
+        : null
+      }
+      {
+        Profile !== '' ? 
+        <>
+          <ProfileTitle>PROFILE</ProfileTitle>
+          <ProfileDescription>
+            {Profile}
+          </ProfileDescription>
+        </>
+        : null
+      }
       <EducationTitle>EDUCATION</EducationTitle>
       <Educations>
         <EducationRonded />
