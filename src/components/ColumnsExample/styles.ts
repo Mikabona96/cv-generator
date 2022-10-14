@@ -6,7 +6,7 @@ export const LeftSide = styled.div`
     flex-direction: column;
     background: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%)' : '#1A1716'};
     color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
-    transition: 0.4s ease-in;
+    transition: 0.3s ease-in;
 `
 
 // ========= TopSection ========
@@ -157,7 +157,7 @@ export const RightSide = styled.div`
     color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
     padding-left: 26px;
     padding-bottom: 50px;
-    transition: 0.4s ease-in;
+    transition: 0.2s ease-in;
 `
 
 // ======== Experience ==========
