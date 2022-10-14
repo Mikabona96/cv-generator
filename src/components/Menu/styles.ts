@@ -10,9 +10,7 @@ export const MenuWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 2px solid #d3d3d3;
     padding: 0px 5px;
-    border-radius: 0px 16px 16px 0px;
     transition: 0.3s ease;
 `
 
@@ -26,7 +24,7 @@ export const Block = styled.div`
     text-align: center;
     align-items: center;
     cursor: pointer;
-    color: black;
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
     &:last-child {
         margin-bottom: 1rem;
     }
@@ -46,4 +44,5 @@ export const MenuSwitcherWrapper = styled.div`
     top: 1rem;
     font-size: 2rem;
     cursor: pointer;
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
 `

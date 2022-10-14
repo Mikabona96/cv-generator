@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import * as S from './styles'
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
@@ -6,9 +6,14 @@ import { FaFacebookSquare, FaViber } from 'react-icons/fa';
 import { BsTelephone, BsLinkedin, BsGithub, BsTelegram, BsSkype, BsWhatsapp } from 'react-icons/bs';
 import perfil from './perfil.jpg'
 
-const Left = () => {
+type PropTypes = {
+  changeTheme: boolean,
+}
+
+
+const Left: FC<PropTypes> = ({changeTheme}) => {
   return (
-    <S.LeftSide>
+    <S.LeftSide changeTheme={changeTheme}>
       <S.TopSection>
         <S.TopSectionImg src={perfil} alt="" />
         <S.Name>SMITH <b>MATTHEW</b></S.Name>

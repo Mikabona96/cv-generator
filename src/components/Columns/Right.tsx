@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import * as S from './styles'
 
-const Right = () => {
+type PropTypes = {
+  changeTheme: boolean
+}
+
+const Right: FC<PropTypes> = ({changeTheme}) => {
   const Experience = useSelector((state: RootState) => state.experienceBlockSlice.experienceBlock)
   const Projects = useSelector((state: RootState) => state.projectsBlockSlice.projectsBlock)
   const Interests = useSelector((state: RootState) => state.interestsBlockSlice.interestsBlock)
   return (
-    <S.RightSide>
+    <S.RightSide changeTheme={changeTheme}>
       {/* ====================EXPERIENCE========================= */}
       {
         Experience && Experience.length > 0 ?

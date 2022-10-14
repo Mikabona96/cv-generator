@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {FC} from 'react'
 import * as S from './styles'
 
-const Right = () => {
+type PropTypes = {
+  changeTheme: boolean,
+}
+
+const Right: FC<PropTypes> = ({changeTheme}) => {
   return (
-    <S.RightSide>
+    <S.RightSide changeTheme={changeTheme}>
       {/* ====================EXPERIENCE========================= */}
       <S.ExperienceTitle>EXPERIENCE</S.ExperienceTitle>
       <S.ExperienceContainer>
@@ -43,9 +47,8 @@ const Right = () => {
           </S.ExperienceDescription>
         </S.ExperienceWrapper>
       </S.ExperienceContainer>
-S.
+      
       {/*=============== Projects ============== */}
-
       <S.ProjectsTitle>PROJECTS</S.ProjectsTitle>
       <S.ProjectContainer>
         <S.ProjectColumnWrapper>

@@ -15,16 +15,17 @@ import ExampleResume from './pages/ExampleResume';
 
 function App() {
   const [openMenu, setOpenMenu] = useState(false)
+  const [changeTheme, setChangeTheme] = useState(false)
   return (
     <Provider store={store}>
       <div className="App">
         <BrowserRouter>
-          <MenuSwitcher openMenu={openMenu} setOpenMenu={setOpenMenu} />
-          <Menu openMenu={openMenu} />
+          <MenuSwitcher changeTheme={changeTheme} openMenu={openMenu} setOpenMenu={setOpenMenu} />
+          <Menu openMenu={openMenu} changeTheme={changeTheme} setChangeTheme={setChangeTheme} />
           <Routes>
             <Route path="/" element={<Editor />} />
-            <Route path="/preview" element={<Resume />} />
-            <Route path="/example" element={<ExampleResume />} />
+            <Route path="/preview" element={<Resume changeTheme={changeTheme} />} />
+            <Route path="/example" element={<ExampleResume changeTheme={changeTheme} />} />
           </Routes>
         </BrowserRouter>
       </div>

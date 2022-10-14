@@ -4,12 +4,13 @@ import {AiOutlineMenu} from 'react-icons/ai'
 
 type PropsType = {
   openMenu: boolean,
+  changeTheme: boolean,
   setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MenuSwitcher: FC<PropsType> = ({openMenu, setOpenMenu}) => {
+const MenuSwitcher: FC<PropsType> = ({openMenu, setOpenMenu, changeTheme}) => {
   return (
-    <MenuSwitcherWrapper onClick={() => setOpenMenu(!openMenu)}><AiOutlineMenu /></MenuSwitcherWrapper>
+    <MenuSwitcherWrapper changeTheme={changeTheme} onClick={() => setOpenMenu(!openMenu)}><AiOutlineMenu /></MenuSwitcherWrapper>
   )
 }
 

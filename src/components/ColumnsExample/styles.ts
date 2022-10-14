@@ -1,22 +1,18 @@
 import styled from 'styled-components'
 // ======== LeftSide =========
 export const LeftSide = styled.div`
-    /* height: 100%; */
     width: 340px;
-
     display: flex;
     flex-direction: column;
-
-    background: rgb(241,242,245);
-    background: radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%);
-    /* padding-bottom: 69px; */
+    background: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%)' : '#1A1716'};
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
+    transition: 0.4s ease-in;
 `
 
 // ========= TopSection ========
 
 export const TopSection = styled.div`
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +27,6 @@ export const TopSectionImg = styled.img`
 
 export const Name = styled.h3`
     text-transform: uppercase;
-    color: black;
     font-size: 24px;
     margin-top: 1.1rem;
     font-weight: normal;
@@ -39,7 +34,6 @@ export const Name = styled.h3`
 
 export const Developer = styled.h4`
     font-weight: normal;
-    color: black;
     margin-top: 0.7rem;
 `
 
@@ -50,8 +44,6 @@ export const InfoSection = styled.div`
     flex-direction: column;
     padding-left: 30px;
     margin-top: 2.4rem;
-    /* align-items: center; */
-    /* justify-content: center; */
 `
 
 export const IconSpan = styled.span`
@@ -131,7 +123,6 @@ export const EducationLine = styled.div`
     left: 36px;
 `
 
-
 // =========== Skills Section ================
 export const SkillsTitle = styled(SocialTitle)``
 
@@ -155,18 +146,18 @@ export const LanguageSection = styled(SkillsSection)`
 `
 export const LanguagesLi = styled.li``
 
-
 // ============================================================= RightSide ===============================================================
 export const RightSide = styled.div`
     box-sizing: border-box;
     display: flex;
     /* height: 100%; */
     width: 668px;
-    /* background-color: yellow; */
+    background:${(props: {changeTheme: boolean}) => !props.changeTheme ? 'white' : '#212022'};
     flex-direction: column;
-    color: black;
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
     padding-left: 26px;
     padding-bottom: 50px;
+    transition: 0.4s ease-in;
 `
 
 // ======== Experience ==========

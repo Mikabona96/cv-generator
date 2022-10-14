@@ -1,12 +1,16 @@
-import React from 'react'
+import React, {FC} from 'react'
 import Left from '../components/Columns/Left'
 import Right from '../components/Columns/Right'
 
-const Resume = () => {
+type PropTypes = {
+  changeTheme: boolean
+}
+
+const Resume: FC<PropTypes> = ({changeTheme}) => {
   return (
     <>
-        <Left/>
-        <Right />
+        <Left changeTheme={changeTheme} />
+        <Right changeTheme={changeTheme} />
     </>
   )
 }

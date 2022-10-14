@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import * as S from './styles'
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
@@ -7,7 +7,11 @@ import { BsTelephone, BsLinkedin, BsGithub, BsTelegram, BsSkype, BsWhatsapp } fr
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 
-const Left = () => {
+type PropTypes = {
+  changeTheme: boolean
+}
+
+const Left: FC<PropTypes> = ({changeTheme}) => {
   const Image = useSelector((state: RootState) => state.image.image)
   const NameAndPosition = useSelector((state: RootState) => state.namePosition)
   const Information = useSelector((state: RootState) => state.info.info)
@@ -18,7 +22,7 @@ const Left = () => {
   const Libraries = useSelector((state: RootState) => state.librariesBlock.librariesBlock)
   const Languages = useSelector((state: RootState) => state.languagesBlock.languagesBlock)
   return (
-    <S.LeftSide>
+    <S.LeftSide changeTheme={changeTheme}>
       {
         Image !== '' ? <S.TopSection>
                   <S.TopSectionImg src={Image} alt="" />

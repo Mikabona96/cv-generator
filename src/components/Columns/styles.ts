@@ -7,9 +7,8 @@ export const LeftSide = styled.div`
     display: flex;
     flex-direction: column;
     height: fit-content;
-    background: rgb(241,242,245);
-    background: radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%);
-    /* padding-bottom: 69px; */
+    background: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'radial-gradient(circle, rgba(241,242,245,1) 50%, rgba(224,223,223,1) 100%)' : '#1A1716'};
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
 `
 
 // ========= TopSection ========
@@ -33,7 +32,6 @@ export const TopSectionImg = styled.img`
 
 export const Name = styled.h3`
     text-transform: uppercase;
-    color: black;
     font-size: 24px;
     margin-top: 1.1rem;
     font-weight: normal;
@@ -41,9 +39,8 @@ export const Name = styled.h3`
 
 export const Developer = styled.h4`
     font-weight: normal;
-    color: black;
     margin-top: 0.7rem;
-`
+` 
 
 // ======= Ifo Section =========
 export const InfoSection = styled.div`
@@ -162,13 +159,11 @@ export const LanguagesLi = styled.li``
 export const RightSide = styled.div`
     box-sizing: border-box;
     display: flex;
-    /* height: 100%; */
     width: 668px;
-    /* background-color: yellow; */
+    background:${(props: {changeTheme: boolean}) => !props.changeTheme ? 'white' : '#212022'};
+    color: ${(props: {changeTheme: boolean}) => !props.changeTheme ? 'black' : 'white'};
     flex-direction: column;
-    color: black;
     padding-left: 26px;
-    padding-bottom: 50px;
 `
 
 // ======== Experience ==========
