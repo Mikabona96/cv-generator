@@ -29,6 +29,7 @@ export const InputImage = styled.input`
     width: 200px;
     height: 200px;
     position: absolute;
+    cursor: pointer;
     opacity: 0;
 `
 

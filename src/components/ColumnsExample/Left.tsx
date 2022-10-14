@@ -1,5 +1,5 @@
 import React from 'react'
-import { Developer, EducationLine, EducationPosition, EducationRonded, Educations, EducationTitle, EducationUniversity, EducationYears, IconSpan, InfoSection, LanguageSection, LanguagesLi, LanguagesTitle, LeftSide, LibrariesLi, LibrariesSection, LibrariesTitle, Name, ProfileDescription, ProfileTitle, SkillsLi, SkillsSection, SkillsTitle, SocialSection, SocialTitle, TextSpan, TopSection, TopSectionImg } from './styles'
+import * as S from './styles'
 import { GoLocation } from 'react-icons/go';
 import { AiOutlineMail, AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookSquare, FaViber } from 'react-icons/fa';
@@ -8,80 +8,79 @@ import perfil from './perfil.jpg'
 
 const Left = () => {
   return (
-    <LeftSide>
-      <TopSection>
-        <TopSectionImg src={perfil} alt="" />
-        <Name>SMITH <b>MATTHEW</b></Name>
-        <Developer>Web developer</Developer>
-      </TopSection>
-      <InfoSection>
-        <IconSpan><GoLocation /><TextSpan>Av. Bolivar #123 Lima - Peru</TextSpan></IconSpan>
-        <IconSpan><AiOutlineMail /><TextSpan>usermail@mail.com</TextSpan></IconSpan>
-        <IconSpan><BsTelephone /><TextSpan>+38(099) 340 589 0</TextSpan></IconSpan>
-      </InfoSection>
-      <SocialTitle>SOCIAL</SocialTitle>
-      <SocialSection>
-        <IconSpan><BsGithub /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsLinkedin /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsTelegram /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><FaFacebookSquare /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><AiOutlineInstagram /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><FaViber /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsSkype /><TextSpan>@smithmat</TextSpan></IconSpan>
-        <IconSpan><BsWhatsapp /><TextSpan>@smithmat</TextSpan></IconSpan>
-      </SocialSection>
-      <ProfileTitle>PROFILE</ProfileTitle>
-      <ProfileDescription>
+    <S.LeftSide>
+      <S.TopSection>
+        <S.TopSectionImg src={perfil} alt="" />
+        <S.Name>SMITH <b>MATTHEW</b></S.Name>
+        <S.Developer>Web developer</S.Developer>
+      </S.TopSection>
+      <S.InfoSection>
+        <S.IconSpan><GoLocation /><S.TextSpan>Av. Bolivar #123 Lima - Peru</S.TextSpan></S.IconSpan>
+        <S.IconSpan><AiOutlineMail /><S.TextSpan>usermail@mail.com</S.TextSpan></S.IconSpan>
+        <S.IconSpan><BsTelephone /><S.TextSpan>+38(099) 340 589 0</S.TextSpan></S.IconSpan>
+      </S.InfoSection>
+      <S.SocialTitle>SOCIAL</S.SocialTitle>
+      <S.SocialSection>
+        <S.IconSpan><BsGithub /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><BsLinkedin /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><BsTelegram /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><FaFacebookSquare /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><AiOutlineInstagram /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><FaViber /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><BsSkype /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+        <S.IconSpan><BsWhatsapp /><S.TextSpan>@smithmat</S.TextSpan></S.IconSpan>
+      </S.SocialSection>
+      <S.ProfileTitle>PROFILE</S.ProfileTitle>
+      <S.ProfileDescription>
         I am a person, responsible with their work during working hours. 
         Finish various technical and higher studies at large universities. 
         I have several years of experience and achievements in the labor field.
-      </ProfileDescription>
-      <EducationTitle>EDUCATION</EducationTitle>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>MASTER OF DESIGN</EducationPosition>
-        <EducationUniversity>University of Studies</EducationUniversity>
-        <EducationYears>2010 - 2015</EducationYears>
-      </Educations>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>WEB DEVELOPER</EducationPosition>
-        <EducationUniversity>Institute Studies</EducationUniversity>
-        <EducationYears>2016 - 2019</EducationYears>
-      </Educations>
-      <Educations>
-        <EducationRonded />
-        <EducationLine />
-        <EducationPosition>MASTER IN UI/UX</EducationPosition>
-        <EducationUniversity>Institute Studies</EducationUniversity>
-        <EducationYears>2019 - 2021</EducationYears>
-      </Educations>
-      <SkillsTitle>SKILLS</SkillsTitle>
-      <SkillsSection>
-        <SkillsLi>Html</SkillsLi>
-        <SkillsLi>CSS</SkillsLi>
-        <SkillsLi>JavaScript</SkillsLi>
-        <SkillsLi>TypeScript</SkillsLi>
-        <SkillsLi>styled-components</SkillsLi>
-        <SkillsLi>Material Ui</SkillsLi>
-        <SkillsLi>React</SkillsLi>
-        <SkillsLi>Redux</SkillsLi>
-      </SkillsSection>
-      <LibrariesTitle>LIBRARIES</LibrariesTitle>
-      <LibrariesSection>
-        <LibrariesLi>_Lodash</LibrariesLi>
-        <LibrariesLi>Material ui</LibrariesLi>
-        <LibrariesLi>Moment js</LibrariesLi>
-      </LibrariesSection>
-      <LanguagesTitle>LANGUAGES</LanguagesTitle>
-      <LanguageSection>
-        <LanguagesLi>English</LanguagesLi>
-        <LanguagesLi>Русский</LanguagesLi>
-        <LanguagesLi>Украйинська</LanguagesLi>
-      </LanguageSection>
-    </LeftSide>
+      </S.ProfileDescription>
+      <S.EducationTitle>EDUCATION</S.EducationTitle>
+      <S.Educations>
+        <S.EducationRonded />
+        <S.EducationLine />
+        <S.EducationPosition>MASTER OF DESIGN</S.EducationPosition>
+        <S.EducationUniversity>University of Studies</S.EducationUniversity>
+        <S.EducationYears>2010 - 2015</S.EducationYears>
+      </S.Educations>
+      <S.Educations>
+        <S.EducationRonded />
+        <S.EducationLine />
+        <S.EducationPosition>WEB DEVELOPER</S.EducationPosition>
+        <S.EducationUniversity>Institute Studies</S.EducationUniversity>
+        <S.EducationYears>2016 - 2019</S.EducationYears>
+      </S.Educations>
+      <S.Educations>
+        <S.EducationRonded />
+        <S.EducationPosition>MASTER IN UI/UX</S.EducationPosition>
+        <S.EducationUniversity>Institute Studies</S.EducationUniversity>
+        <S.EducationYears>2019 - 2021</S.EducationYears>
+      </S.Educations>
+      <S.SkillsTitle>SKILLS</S.SkillsTitle>
+      <S.SkillsSection>
+        <S.SkillsLi>Html</S.SkillsLi>
+        <S.SkillsLi>CSS</S.SkillsLi>
+        <S.SkillsLi>JavaScript</S.SkillsLi>
+        <S.SkillsLi>TypeScript</S.SkillsLi>
+        <S.SkillsLi>styled-components</S.SkillsLi>
+        <S.SkillsLi>Material Ui</S.SkillsLi>
+        <S.SkillsLi>React</S.SkillsLi>
+        <S.SkillsLi>Redux</S.SkillsLi>
+      </S.SkillsSection>
+      <S.LibrariesTitle>LIBRARIES</S.LibrariesTitle>
+      <S.LibrariesSection>
+        <S.LibrariesLi>_Lodash</S.LibrariesLi>
+        <S.LibrariesLi>Material ui</S.LibrariesLi>
+        <S.LibrariesLi>Moment js</S.LibrariesLi>
+      </S.LibrariesSection>
+      <S.LanguagesTitle>LANGUAGES</S.LanguagesTitle>
+      <S.LanguageSection>
+        <S.LanguagesLi>English</S.LanguagesLi>
+        <S.LanguagesLi>Русский</S.LanguagesLi>
+        <S.LanguagesLi>Украйинська</S.LanguagesLi>
+      </S.LanguageSection>
+    </S.LeftSide>
   )
 }
 

@@ -1,83 +1,82 @@
 import React from 'react'
-import { ExperienceCompany, ExperienceContainer, ExperienceDescription, ExperienceLine, ExperiencePosition, ExperienceRounder, ExperienceTitle, ExperienceWrapper, ExperienceYears, ExperienceYearsContainer, InterestsLi, InterestsSection, InterestsTitle, ProjectColumnWrapper, ProjectContainer, ProjectDescription, ProjectInfoLeft, ProjectsTitle, RightSide } from './styles'
+import * as S from './styles'
 
 const Right = () => {
   return (
-    <RightSide>
+    <S.RightSide>
       {/* ====================EXPERIENCE========================= */}
-      <ExperienceTitle>EXPERIENCE</ExperienceTitle>
-      <ExperienceContainer>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
+      <S.ExperienceTitle>EXPERIENCE</S.ExperienceTitle>
+      <S.ExperienceContainer>
+        <S.ExperienceWrapper>
+          <S.ExperienceRounder />
+          <S.ExperienceLine />
+          <S.ExperiencePosition>MASTER OF DESIGN</S.ExperiencePosition>
+          <S.ExperienceYearsContainer>
+            <S.ExperienceYears>From 2013 to 2015</S.ExperienceYears> | <S.ExperienceCompany>Tech Soft</S.ExperienceCompany>
+          </S.ExperienceYearsContainer>
+          <S.ExperienceDescription>
             Work in this company dedicating the best responsibility in the area that corresponds, 
             delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
+          </S.ExperienceDescription>
+        </S.ExperienceWrapper>
+        <S.ExperienceWrapper>
+          <S.ExperienceRounder />
+          <S.ExperienceLine />
+          <S.ExperiencePosition>MASTER OF DESIGN</S.ExperiencePosition>
+          <S.ExperienceYearsContainer>
+            <S.ExperienceYears>From 2013 to 2015</S.ExperienceYears> | <S.ExperienceCompany>Tech Soft</S.ExperienceCompany>
+          </S.ExperienceYearsContainer>
+          <S.ExperienceDescription>
             Work in this company dedicating the best responsibility in the area that corresponds, 
             delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-        <ExperienceWrapper>
-          <ExperienceRounder />
-          <ExperienceLine />
-          <ExperiencePosition>MASTER OF DESIGN</ExperiencePosition>
-          <ExperienceYearsContainer>
-            <ExperienceYears>From 2013 to 2015</ExperienceYears> | <ExperienceCompany>Tech Soft</ExperienceCompany>
-          </ExperienceYearsContainer>
-          <ExperienceDescription>
+          </S.ExperienceDescription>
+        </S.ExperienceWrapper>
+        <S.ExperienceWrapper>
+          <S.ExperienceRounder />
+          <S.ExperiencePosition>MASTER OF DESIGN</S.ExperiencePosition>
+          <S.ExperienceYearsContainer>
+            <S.ExperienceYears>From 2013 to 2015</S.ExperienceYears> | <S.ExperienceCompany>Tech Soft</S.ExperienceCompany>
+          </S.ExperienceYearsContainer>
+          <S.ExperienceDescription>
             Work in this company dedicating the best responsibility in the area that corresponds, 
             delivering the best results for the company and improving productivity.
-          </ExperienceDescription>
-        </ExperienceWrapper>
-      </ExperienceContainer>
-
+          </S.ExperienceDescription>
+        </S.ExperienceWrapper>
+      </S.ExperienceContainer>
+S.
       {/*=============== Projects ============== */}
 
-      <ProjectsTitle>PROJECTS</ProjectsTitle>
-      <ProjectContainer>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Description:</ProjectInfoLeft>
-          <ProjectDescription>
+      <S.ProjectsTitle>PROJECTS</S.ProjectsTitle>
+      <S.ProjectContainer>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Description:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             SPA for education children, where children can learn basic english words , and choose level from A0/A1 to A2.
             On this project I implemented virtual keyboard and also main modules for optimization data.
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Customer:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Customer:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             Ukraine
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Involvement Duration:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Involvement Duration:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             9 months
             (April 2021-December 2021)
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Role:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Project Role:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             Front-end developer
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Responsibilities:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Responsibilities:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           - development of UI interface, 
           - adaptive layout, 
           - task managment,
@@ -85,51 +84,51 @@ const Right = () => {
           - working with API,
           - optimization,
           - communication with a client
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Team Size:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Project Team Size:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           2 members
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Tools & Technologies:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Tools & Technologies:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           TypeScript, React, Redux, Styled Components, Git, Figma
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-      </ProjectContainer>
-      <ProjectContainer>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Description:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+      </S.ProjectContainer>
+      <S.ProjectContainer>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Description:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             SPA for education children, where children can learn basic english words , and choose level from A0/A1 to A2.
             On this project I implemented virtual keyboard and also main modules for optimization data.
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Customer:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Customer:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             Ukraine
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Involvement Duration:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Involvement Duration:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             9 months
             (April 2021-December 2021)
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Role:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Project Role:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
             Front-end developer
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Responsibilities:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Responsibilities:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           - development of UI interface, 
           - adaptive layout, 
           - task managment,
@@ -137,29 +136,29 @@ const Right = () => {
           - working with API,
           - optimization,
           - communication with a client
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Project Team Size:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Project Team Size:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           2 members
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-        <ProjectColumnWrapper>
-          <ProjectInfoLeft>Tools & Technologies:</ProjectInfoLeft>
-          <ProjectDescription>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+        <S.ProjectColumnWrapper>
+          <S.ProjectInfoLeft>Tools & Technologies:</S.ProjectInfoLeft>
+          <S.ProjectDescription>
           TypeScript, React, Redux, Styled Components, Git, Figma
-          </ProjectDescription>
-        </ProjectColumnWrapper>
-      </ProjectContainer>
-      <InterestsTitle>INTERESTS</InterestsTitle>
-      <InterestsSection>
-        <InterestsLi>Music</InterestsLi>
-        <InterestsLi>Reading</InterestsLi>
-        <InterestsLi>Sport</InterestsLi>
-        <InterestsLi>Music</InterestsLi>
-      </InterestsSection>
-    </RightSide>
+          </S.ProjectDescription>
+        </S.ProjectColumnWrapper>
+      </S.ProjectContainer>
+      <S.InterestsTitle>INTERESTS</S.InterestsTitle>
+      <S.InterestsSection>
+        <S.InterestsLi>Music</S.InterestsLi>
+        <S.InterestsLi>Reading</S.InterestsLi>
+        <S.InterestsLi>Sport</S.InterestsLi>
+        <S.InterestsLi>Music</S.InterestsLi>
+      </S.InterestsSection>
+    </S.RightSide>
   )
 }
 
